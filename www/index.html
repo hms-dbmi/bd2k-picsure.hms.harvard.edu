@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+	content="The BD2K PIC-SURE IRCT-UI provides a set of reusable components that interact with the IRCT application.">
+<meta name="author" content="Jeremy R. Easton-Marks">
+
+<title>BD2K PIC-SURE RESTful API</title>
+
+<!-- Roboto Font -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" type='text/css'>
+<link rel="stylesheet" href="./css/main.css" type='text/css'>
+
+</head>
+<body>
+  <!-- START HEADER -->
+	<nav class="navbar navbar-exac navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand">BD2K PIC-SURE RESTful API</span>
+      </div>
+    </div>
+  </nav>
+  <!-- END HEADER -->
+  <div class="container-fluid">
+    <!-- START NAVIGATION -->
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+		    <ul class="nav nav-sidebar">
+          <li class="mainNavHeader active"><a href="/index.html">Overview</a></li>
+          <li><a href="/more.html">Learn More</a></li>
+          <li><a href="/example-01.html">Example</a></li>
+        </ul>
+		    <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="/rest.html">REST API</a></li>
+          <li><a href="/rest.html#Security">Security</a></li>
+          <li><a href="/rest.html#Resource">Resource</a></li>
+          <li><a href="/rest.html#Query">Query</a></li>
+          <li><a href="/rest.html#Process">Process</a></li>
+          <li><a href="/rest.html#Result">Result</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-CL</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-CL" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-CL/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-API</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-API" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-API/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-EXT</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-EXT" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-EXT/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-RI</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-RI" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-RI/index.html">JavaDoc</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- END NAVIGATION -->
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div class="row docRow" id="Introduction">
+        <div class="col-xs-offset-3  col-sm-offset-3 col-xs-6 col-sm-6 docRowText">
+          <span class="docRowHeader">BD2K PIC-SURE RESTful API</span>
+          <p class="docText">Harvard University Medical School (HMS) Patient-Centered Informatics Common: Standardized Unification of Research Elements (PIC-SURE) is developing an open-source infrastructure that will foster the incorporation of multiple heterogeneous patient level clinical, omics and environment datasets.. This system embraces the idea of decentralized datasets of varying types, and the protocols used to access them while still providing a simple communication layer that can handle querying, joining, and computing on. The BD2K PIC-SURE RESTful API implementation is called Inter Resource Communication Tool (IRCT).</p>
+          <a href="/more.html" class="inherit style-scope home-page">
+            <button class="btn docButton">Learn more</button>
+          </a>
+          <a href="http://www.pic-sure.org/" target="_blank" class="inherit style-scope home-page">
+            <button class="btn docButton">Learn more about PIC-SURE</button>
+          </a>
+          <a href="/example-01.html" class="inherit style-scope home-page">
+            <button class="btn docButton">Try it out</button>
+          </a>
+      </div>
+      </div>
+      <div class="row componentRow">
+        <div class="col-xs-3  col-sm-3 componentCol">
+          <span class="componentTitle">IRCT-CL</span>
+          <p class="componentText">The IRCT Communication Layer (IRCT-CL) provides a resource agnostic REpresentative State Transfer (RESTful) service. Users build queries by making a series of calls to the RESTful service that can span multiple datasets and resources.</p>
+          <div class="linkRow">
+            <div class="col-xs-4 col-sm-4 componentOutCell"><a target="_blank" href="https://github.com/hms-dbmi/IRCT-CL" class="componentOutLink">GITHUB</a></div>
+            <div class="col-xs-4 col-sm-4 componentOutCell"><a href="/IRCT-CL/index.html" class="componentOutLink">JAVADOC</a></div>
+            <div class="col-xs-4 col-sm-4 componentOutCell"><a href="/rest.html" class="componentOutLink">REST API</a></div>
+          </div>
+        </div>
+        <div class="col-xs-3  col-sm-3 componentCol">
+          <span class="componentTitle">IRCT-API</span>
+          <p class="componentText">The IRCT Application Programming Interface (IRCT-API) is the core of the IRCT project. It manages the queries for data, and processing across the different resources.</p>
+          <div class="linkRow">
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a target="_blank" href="https://github.com/hms-dbmi/IRCT-API" class="componentOutLink">GITHUB</a></div>
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a href="/IRCT-API/index.html" class="componentOutLink">JAVADOC</a></div>
+          </div>
+        </div>
+         <div class="col-xs-3  col-sm-3 componentCol">
+          <span class="componentTitle">IRCT-EXT</span>
+          <p class="componentText">The IRCT Extension (IRCT-EXT) provides a way of adding additional functionality to an IRCT instance. Administrators can add any number of additional features without having to make code changes.</p>
+          <div class="linkRow">
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a target="_blank" href="https://github.com/hms-dbmi/IRCT-EXT" class="componentOutLink">GITHUB</a></div>
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a href="/IRCT-EXT/index.html" class="componentOutLink">JAVADOC</a></div>
+          </div>
+        </div>
+        <div class="col-xs-3  col-sm-3 componentCol">
+          <span class="componentTitle">IRCT-RI</span>
+          <p class="componentText">The IRCT Resource Interface (IRCT-RI) provides a way of connecting tht IRCT application to different resources for querying. Included in the project are interfaces to both i2b2, i2b2/tranSMART, and the ExAC browser.</p>
+          <div class="linkRow">
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a target="_blank" href="https://github.com/hms-dbmi/IRCT-RI" class="componentOutLink">GITHUB</a></div>
+            <div class="col-xs-6 col-sm-6 componentOutCell"><a href="./IRCT-RI/index.html" class="componentOutLink">JAVADOC</a></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  <!-- Bootstrap JS -->
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>

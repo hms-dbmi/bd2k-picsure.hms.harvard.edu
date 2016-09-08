@@ -1,0 +1,211 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/*
+ * Navbar
+ */
+.navbar-exac {
+  background-color: #3f51b5;
+  border-color: #1B70E0;
+  color: white;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-brand:hover {
+  color: white;
+  text-decoration: none;
+}
+
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: white;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: black;
+  background-color: white;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: black;
+  background-color: lightgrey;
+}
+
+.nav-sidebar > a,
+.nav-sidebar > a:hover,
+.nav-sidebar > a:focus {
+  color: black;
+  background-color: lightgray;
+}
+
+.mainNavHeader {
+  font-weight: bold;
+}
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+/**
+ * Documentation Panels
+ */
+.docRow {
+  min-height: 200px;
+  border-bottom: 1px lightgrey solid;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  height: calc(100vh / 2);
+}
+
+.restDocRow {
+  min-height: 200px;
+  border-bottom: 1px lightgrey solid;
+  padding-top: 5px;
+  min-height: 200px;
+}
+
+.moreRow {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.docRowHeader {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.docText {
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.docTextNote {
+  background-color: #ffffcc;
+  border-left: 5px solid #ffff1a;
+  padding-left: 5px;
+}
+
+.docRowCode {
+}
+
+.docButton {
+  background-color: white;
+  color: black;
+  align-items: center;
+  border-color: black;
+  width: calc(33% - 3px);
+}
+
+/**
+ * Component Panels
+ */
+.componentRow {padding-top: 15px;min-height: 250px;display: table;}
+
+.componentCol {
+    border-left: 1px lightgrey solid;
+    border-right: 1px lightgrey solid;
+    display: table-cell;
+    float: none;
+}
+
+.componentTitle {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    display: inline-block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.componentText {}
+
+.linkRow {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.componentOutCell {text-align: center;}
+
+/**
+ * Animation
+*/
+.glyphicon.normal-right-spinner {
+    font-size: 50px;
+    -webkit-animation: glyphicon-spin-r 2s infinite linear;
+    animation: glyphicon-spin-r 2s infinite linear;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}

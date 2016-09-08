@@ -1,0 +1,18 @@
+{
+  "name": "HMS ExAC",
+  "homepage": "http://exac.hms.harvard.edu",
+  "authors": [
+    "(Jeremy R. Easton-Marks <Jeremy_Easton-Marks@hms.harvard.edu>)"
+  ],
+  "description": "The HMS ExAC API adds REST API functionality to the ExAC Web Browser",
+  "main": "index.html",
+  "license": "MPL2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

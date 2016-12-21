@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+	content="The BD2K PIC-SURE IRCT-UI provides a set of reusable components that interact with the IRCT application.">
+<meta name="author" content="Jeremy R. Easton-Marks">
+
+<title>BD2K PIC-SURE RESTful API</title>
+
+<!-- Roboto Font -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" type='text/css'>
+<link rel="stylesheet" href="./css/main.css" type='text/css'>
+
+</head>
+<body>
+  <!-- START HEADER -->
+	<nav class="navbar navbar-exac navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand">BD2K PIC-SURE RESTful API</span>
+      </div>
+    </div>
+  </nav>
+  <!-- END HEADER -->
+  <div class="container-fluid">
+    <!-- START NAVIGATION -->
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+		    <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="/index.html">Overview</a></li>
+          <li><a href="/more.html">Learn More</a></li>
+          <li><a href="/example-01.html">Example</a></li>
+					<li class="active"><a href="/version.html">Version</a></li>
+        </ul>
+        <ul class="nav nav-sidebar scrollable">
+          <li class="mainNavHeader"><a href="/rest.html#Introduction">REST API</a></li>
+          <li><a href="/rest.html#Security">Security</a></li>
+          <li><a href="/rest.html#Resource">Resource</a></li>
+          <li><a href="/rest.html#Query">Query</a></li>
+          <li><a href="/rest.html#Process">Process</a></li>
+          <li><a href="/rest.html#Result">Result</a></li>
+        </ul>
+		    <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-CL</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-CL" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-CL/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-API</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-API" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-API/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-EXT</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-EXT" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-EXT/index.html">JavaDoc</a></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+          <li class="mainNavHeader"><a href="#">IRCT-RI</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT-RI" class="componentOutLink">GitHub</a></li>
+          <li><a href="/IRCT-RI/index.html">JavaDoc</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- END NAVIGATION -->
+		<div class="col-xs-offset-3  col-sm-offset-3 col-xs-6 col-sm-6 docRowText">
+			<div class="row moreRow">
+			<p class="versionMaxRowHeader">Versions</p>
+
+			<span class="versionRowHeader">1.3.1</span>
+			<p class="versionText">
+				This release includes an update to the documentation, as well as an update
+				to the SciDB sql file.
+			</p>
+
+			<span class="versionRowHeader">1.3</span>
+			<p class="versionText">
+				This release of the IRCT includes major updates to the query functionality.
+				Queries can now support subqueries, and field values having both queries,
+				and arrays. Queries also now fully support sort clauses, and select clauses
+				can now have aggregates and other functions. This was accomplished by
+				refactoring the query handling RESTFull service. This release also includes
+				major improvements to the SciDB resource interface that allows for more
+				complicated queries. Several minor bug fixes, and improvements were also
+				included in this release.
+			</p>
+
+			<span class="versionRowHeader">1.2.2</span>
+			<p class="versionText">
+				This release includes bug fixes that caused the IRCT to keep some files
+				open which eventually caused the IRCT to consume more system resources then
+				needed. It also includes fixes to the CSV result data converter, and the
+				initial release of the SciDB resource interface. Other minor bug fixes and
+				code improvements are included in this release.
+			</p>
+
+			<span class="versionRowHeader">1.2.1</span>
+			<p class="versionText">
+				This release includes bug fixes in the logging of events, DB connection issues,
+				and handling of system, and unkown URL HTTP requests.
+			</p>
+
+			<span class="versionRowHeader">1.2</span>
+			<p class="versionText">
+				This release adds new search term functionality. Users can now perform more
+				complicated searches for terms, as well as add listers to the terms that
+				can expand upon the users initial searches. Initial new search extension
+				listeners include capitalization of search tersm, as well as expanding the
+				search with UMLS synonyms. Minor bug fixes, and improvements in the persistance
+				are also included.
+			</p>
+
+			<span class="versionRowHeader">1.1</span>
+			<p class="versionText">
+				This release expands on the functionality of the IRCT by introducing event
+				listeners. This allows for functionality to be added to individual deployments
+				of the IRCT without having to make code changes to the core code. This new
+				funcitonality exists in the extension repo (IRCT-EXT). The initial release
+				includes event listeners that allow for monitoring, and the saving and retrieving of
+				results from an AWS S3 bucket. The result data converters were also moved
+				from the core code to the extensions repo as part of this refactoring.
+				This release also includes updates to the resource interfaces for i2b2,
+				and i2b2/tranSMART as well as some minor bug fixes in the RESTFull services.
+				</aside>
+			</p>
+
+			<span class="versionRowHeader">1.0</span>
+			<p class="versionText">
+				This is the first production release of the IRCT. It provides a resource
+				driven RESTFull API that allows for a user to interact with several different
+				resources from a single end point in a secure manner. Users can create secure
+				sessions by creating, and using keys. It also includes resource interfaces
+				for interacting with i2b2, i2b2/tranSMART, and ExAC.
+			</p>
+
+			<span class="versionRowHeader">0.3</span>
+			<p class="versionText">
+				This is a the second prerelease version of the IRCT. It contains several
+				bug fixes that allow for better saving and retrieval of results.
+			</p>
+
+			<span class="versionRowHeader">0.2</span>
+			<p class="versionText">
+				This is the prerelease version of the IRCT that provides a proof of concept.
+				It includes the first version of the resource interfaces for i2b2, i2b2/tranSMART,
+				and the ExAC browser. It allows for basic queries, and processes to be
+				performed across different resources of various types.
+			</p>
+		</div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/smoothScroll.js"></script>
+</body>
+</html>

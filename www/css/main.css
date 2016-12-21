@@ -147,6 +147,23 @@ body {
 }
 
 /**
+ * Version page
+ */
+ .versionMaxRowHeader {
+     font-size: 30px;
+     font-weight: bolder;
+ }
+
+ .versionRowHeader {
+   font-size: 25px;
+   font-weight: bold;
+ }
+
+ .versionText {
+   
+ }
+
+/**
  * Component Panels
  */
 .componentRow {padding-top: 15px;min-height: 250px;display: table;}

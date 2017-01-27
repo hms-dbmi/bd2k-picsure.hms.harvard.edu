@@ -39,7 +39,9 @@ All actions that can be performed by resources from the IRCT are abstracted into
 #### IRCT Components Overview
 ![IRCT Overview](./IRCT Component Overview.png)
 
-The IRCT consists of four components; Communication Layer (IRCT-CL), API (IRCT-API), Extensions (IRCT-EXT), and Resource Interfaces (IRCT-RI). Each component performs a specific task so that a query, or any other action can be accomplished.
+The IRCT consists of four components; Communication Layer (IRCT-CL), API (IRCT-API), Extensions (IRCT-EXT), and Resource Interfaces (IRCT-RI). Each component performs a specific task so that a query, or any other action can be successfully accomplished.
+
+The IRCT Communication Layer (IRCT-CL) provides a secure resource agnostic REpresentative State Transfer (RESTful) service. Users build queries by making a series of calls to the RESTful service that can span multiple datasets and resources. These queries, and other actions are passed onto the IRCT-API. The IRCT Application Programming Interface (IRCT-API) is the core of the IRCT project. It manages the queries for data, and processing across the different resources. Beyond just this it ensures that all the actions that are attempted by the end user are valid, manages the available resources, and provides some basic security. The IRCT Extension (IRCT-EXT) provides a way of adding additional functionality to an IRCT instance. Administrators can add any number of additional features without having to make code changes, or recompiling the IRCT. The IRCT Resource Interface (IRCT-RI) provides a way of connecting the IRCT application to different resources for querying, and running processes. Some examples of resources are i2b2, i2b2/tranSMART, SciDB, and the ExAC browser.
 
 ## Quick Start
 #### Your First Query
@@ -111,7 +113,8 @@ BODY
         }
       }
 	]
-}```
+}
+```
 
 Response
 ```JSON
@@ -149,21 +152,71 @@ _GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/endSess
 Response
 ```CSV
 PATIENT_NUM,Systolic Pressure
-"",""
+14759, 12.3
 
 ...
 ```
 
 ## Security
 #### Overview
+The IRCT allows for users to interact with several different resources as themselves. This allows the resources to dictate the access levels that they want to provide their users and doesn't require that multiple organizations come to an agreement on authorization privileges. To allow a user to switch between different applications without having to log in again the IRCT generates a unique key. This key can be used to start another secure session in a different application as the same user by calling the start session function of the security service.
+
+Since the IRCT allows for multiple actions then the means by which the user communicates with the IRCT needs to support cookies. You should check with the library you are using to make the sure the calls allow for the proper handling of cookies.
 
 #### Obtaining Keys
+A user can obtain keys in one of two ways. The first, and most popular way, is through another system such as i2b2/tranSMART. The second way is by submitting a valid Java Web Token (JWT) to the IRCT security service requesting a token. This can be accomplished by calling doing the Security Services Create Key function. Both of these methods result in an end user obtaining a randomly generated and unique 26 character alphanumeric string.
+
+_GET /rest/v1/securityService/createKey_
+
+HTTP Header
+```
+Authorization : Bearer <JWT_TOKEN>
+```
+
+Response
+```JSON
+{
+  "key": "<key>"
+}
+```
+
+Example Response
+```JSON
+{
+  "key":"afed8417s1u67v7ln9s9oflh6k"
+}
+```
 
 #### Using Keys
+Keys are a simple way to start a secure session with the IRCT so that they can then interact with other resources. Keys expire after a set period of time. Users should check with their IRCT administrator to see how long their keys are valid.
+
+
+*GET /rest/v1/securityService/startSession?key=&lt;key&gt;*
+
+Response
+```JSON
+{
+  "status": "<status>"
+}
+```
+
+
+Example Response
+```JSON
+{
+  "status": "success"
+}
+```
 
 ## Resources
 #### What are Resources?
-Resources are
+Resources are loosely defined as being any outside application, or service that the IRCT communicates with. This includes resources that provide data such as i2b2/tranSMART, or services such as ExAC.
+
+! Because the IRCT has the ability to communicate with a variety of different types of resources, and what type of implementation they support the IRCT needs to describe what they do to the end user.
+
+! As described above this creates a Resource Driven API.
+
+! We look more into the different parts of how to understand what a resource supports, and what you can do with it.
 
 #### Getting a List of Resources
 
@@ -171,9 +224,524 @@ Resources are
 
 Example Response
 ```JSON
+[
+  {
+    "id": 1,
+    "name": "nhanes",
+    "ontologyType": "TREE",
+    "implementation": "i2b2/tranSMART",
+    "relationships": [
+      "PARENT",
+      "CHILD",
+      "SIBLING",
+      "MODIFIER",
+      "TERM"
+    ],
+    "logicaloperators": [
+      "AND",
+      "OR",
+      "NOT"
+    ],
+    "predicates": [
+      {
+        "predicateName": "CONTAINS",
+        "displayName": "Contains",
+        "description": "Contains value",
+        "default": true,
+        "fields": [
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_MODIFIER",
+        "displayName": "Constrain by Modifier",
+        "description": "Constrain by Modifier",
+        "default": false,
+        "fields": [
+          {
+            "name": "Modifier",
+            "path": "MODIFIER_KEY",
+            "description": "Constrain by a modifier of this entity",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [],
+            "relationship": "MODIFIER"
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_VALUE",
+        "displayName": "Constrain by Value",
+        "description": "Constrains by Value",
+        "default": false,
+        "fields": [
+          {
+            "name": "Operator",
+            "path": "OPERATOR",
+            "description": "Operator",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "EQ",
+              "NE",
+              "GT",
+              "GE",
+              "LT",
+              "LE",
+              "BETWEEN",
+              "LIKE[exact]",
+              "LIKE[begin]",
+              "LIKE[end]",
+              "LIKE[contains]"
+            ]
+          },
+          {
+            "name": "Constraint",
+            "path": "CONSTRAINT",
+            "description": "Constraint",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "string",
+                "pattern": "^.*$",
+                "description": "A string value"
+              },
+              {
+                "name": "integer",
+                "pattern": "^\\d+$",
+                "description": "An integer value"
+              },
+              {
+                "name": "float",
+                "pattern": "^([+-]?\\d*\\.?\\d*)$",
+                "description": "A float value"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Unit of Measure",
+            "path": "UNIT_OF_MEASURE",
+            "description": "Unit of Measure",
+            "required": false,
+            "dataTypes": [
+              {
+                "name": "string",
+                "pattern": "^.*$",
+                "description": "A string value"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_DATE",
+        "displayName": "Constrain by Date",
+        "description": "Constrains by Date",
+        "default": false,
+        "fields": [
+          {
+            "name": "From Inclusive",
+            "path": "FROM_INCLUSIVE",
+            "description": "Inclusive From Date",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          },
+          {
+            "name": "From Time",
+            "path": "FROM_TIME",
+            "description": "From Date Start or End",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "START_DATE",
+              "END_DATE"
+            ]
+          },
+          {
+            "name": "From Date",
+            "path": "FROM_DATE",
+            "description": "From Date",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "date",
+                "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                "description": "Date in yyyy-mm-dd format",
+                "typeof": "dateTime"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "To Inclusive",
+            "path": "TO_INCLUSIVE",
+            "description": "Inclusive To Date",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          },
+          {
+            "name": "To Time",
+            "path": "TO_TIME",
+            "description": "To Date Start or End",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "START_DATE",
+              "END_DATE"
+            ]
+          },
+          {
+            "name": "To Date",
+            "path": "TO_DATE",
+            "description": "To Date",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "date",
+                "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                "description": "Date in yyyy-mm-dd format",
+                "typeof": "dateTime"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [],
+        "paths": []
+      }
+    ],
+    "selectOperations": [],
+    "joins": [],
+    "sorts": [],
+    "processes": [],
+    "visualization": [],
+    "dataTypes": [
+      {
+        "name": "dateTime",
+        "pattern": "^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$",
+        "description": "Date in yyyy-mm-dd hh:mm:ss format. With hours in 24 hour format"
+      },
+      {
+        "name": "date",
+        "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+        "description": "Date in yyyy-mm-dd format",
+        "typeof": "dateTime"
+      },
+      {
+        "name": "integer",
+        "pattern": "^\\d+$",
+        "description": "An integer value"
+      },
+      {
+        "name": "string",
+        "pattern": "^.*$",
+        "description": "A string value"
+      },
+      {
+        "name": "float",
+        "pattern": "^([+-]?\\d*\\.?\\d*)$",
+        "description": "A float value"
+      }
+    ]
+  }
+]
 ```
 
-#### Understanding Resources
+#### Understanding Resource Components
+In this section we will look at the different parts of the JSON description of a resource.
+
+```JSON
+{
+  "id": 1,
+  "name": "nhanes",
+  "ontologyType": "TREE",
+  "implementation": "i2b2/tranSMART",
+  "relationships": [
+    "PARENT",
+    "CHILD",
+    "SIBLING",
+    "MODIFIER",
+    "TERM"
+  ]
+}
+```
+ Key | Meaning
+-----|--------
+id   | The id of the resource
+name | The name of the resource
+ontologyType | The type of relationships between entities
+implementation | The type of resource that it is
+relationships | This is a list of all the different types of relationships that can exist in this resource
+
+**Not all resources will have relationships**
+
+```JSON
+{
+  "logicaloperators": [
+    "AND",
+    "OR",
+    "NOT"
+  ]
+}
+```
+
+Key | Meaning
+-----|--------
+logicaloperators | Are the series of logical operators that can be used to join predicates.
+
+**Not all resources will support logical operations**
+
+
+```JSON
+{
+"predicates": [
+]
+}
+```
+This predicates attribute contains a list of all the available operations that can be done during a query. Since the IRCT can support many different types of operations we will have multiple examples.
+
+```JSON
+{
+  "predicateName": "CONTAINS",
+  "displayName": "Contains",
+  "description": "Contains value",
+  "default": true,
+  "fields": [
+    {
+      "name": "By Encounter",
+      "path": "ENOUNTER",
+      "description": "By Encounter",
+      "required": true,
+      "dataTypes": [],
+      "permittedValues": [
+        "YES",
+        "NO"
+      ]
+    }
+  ],
+  "dataTypes": [
+    "STRING",
+    "INTEGER",
+    "FLOAT"
+  ],
+  "paths": []
+}
+```
+Key | Meaning
+-----|--------
+predicateName | The name of the predicate name that is to be referenced in a query
+displayName | The name of the predicate to be displayed
+description | A description of the predicate
+default | The default predicate to be run
+fields | An array of fields that either have to or can be passed as part of the predicate for the query. Fields are described below.
+dataTypes | The data types that this predicate can be run on
+paths | The paths that this predicate can be run on
+
+
+Fields
+
+Key | Meaning
+-----|--------
+name | The name of the field as it is to be displayed
+path | The reference path of the fields as it is to be used in a query
+description | A description of the field
+required | Is this field required or not
+dataTypes | Types of data that can be passed as a value of this field
+permittedValues | A list of possible values that can be set for this field
+
+
+
+```JSON
+{
+    "name": "Modifier",
+    "path": "MODIFIER_KEY",
+    "description": "Constrain by a modifier of this entity",
+    "required": true,
+    "dataTypes": [],
+    "permittedValues": [],
+    "relationship": "MODIFIER"
+}
+```
+
+Key | Meaning
+-----|--------
+relationship | This is the relationship that must be associated with a path in a query
+
+
+```JSON
+{
+    "id": 2,
+    "name": "ExAC",
+    "ontologyType": "TREE",
+    "implementation": "exac",
+    "relationships": [
+      "PARENT",
+      "CHILD"
+    ],
+    "processes": [
+      {
+        "name": "RARITY",
+        "displayName": "Calculate Rarity",
+        "description": "Calculate the rarity of a variant against the ExAC database",
+        "fields": [
+          {
+            "name": "Result",
+            "path": "RESULTSET",
+            "description": "Result Set",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "resultSet",
+                "pattern": "^-?\\d{1,19}$",
+                "description": "A resultset identifier"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Chromosome",
+            "path": "CHROMOSOME",
+            "description": "Chromosome Column",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "column",
+                "pattern": "^.*$",
+                "description": "A column identifier"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Position",
+            "path": "POSITION",
+            "description": "Position Column",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "column",
+                "pattern": "^.*$",
+                "description": "A column identifier"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Reference",
+            "path": "REFERENCE",
+            "description": "Reference Column",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "column",
+                "pattern": "^.*$",
+                "description": "A column identifier"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Variant",
+            "path": "VARIANT",
+            "description": "Variant Column",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "column",
+                "pattern": "^.*$",
+                "description": "A column identifier"
+              }
+            ],
+            "permittedValues": []
+          }
+        ],
+        "returns": []
+      }
+    ]
+}
+```
+
+```JSON
+{
+  "processes": [
+  ]
+}
+```
+
+```JSON
+
+```
 
 ## Term Search
 #### Searching for a Term Across Resources
@@ -206,6 +774,7 @@ In the IRCT they are resource agnostic, and are automatically translated to the 
 
 ## Results
 #### Result Status
+#### Result Converters
 #### Result Retrieval
 
 ## Bringing it all together

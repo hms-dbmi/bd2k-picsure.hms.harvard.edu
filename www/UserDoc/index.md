@@ -1,14 +1,12 @@
 # User Guide
 
-## Section Guide
+## Documentation Guide
 * [IRCT Overview](./IRCT.md)
 * [Quick Start](./QuickStart.md)
 * [Security](./Security.md)
 * [Resources](./Resources.md)
 * [Term Search](./TermSearch.md)
 * [Queries](./Queries.md)
-* [Processes](./Processes.md)
-* [Results](./Results.md)
 
 ## Introduction
 #### Purpose of this Document

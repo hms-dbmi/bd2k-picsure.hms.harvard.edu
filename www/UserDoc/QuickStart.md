@@ -1,11 +1,20 @@
-## Quick Start
-#### Your First Query
-For this query we are going to query the NHANES i2b2/tranSMART resource to obtain the mean systolic, and mean diastolic pressure for all males who are over the age of 65. We want to have this data returned to us in CSV format so that we may analyze it later with another piece of software.
+[Home](./index.md) > Quick Start
 
-###### Obtaining your access key
+# Quick Start
+### Your First Query
+For this example we are going to query the NHANES i2b2/tranSMART resource to obtain the mean systolic pressure for all males. We want to have this data returned to us in CSV format so that we may analyze it later with another piece of software.
 
+##### Obtaining your access key
+* Go to [NHANES](https://nhanes.hms.harvard.edu) i2b2/tranSMART site
+* Click the 'Public User' button and then the user profile button.
 
-###### Starting a session
+![User Profile Button](./UserProfileButton.png)
+
+* Copy the BD2K PICSURE API Key
+
+![PICSURE API Key](./PicSureKey.png)
+
+##### Starting a session
 *GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/startSession?key=&lt;key&gt;*
 
 Response
@@ -15,7 +24,7 @@ Response
 }
 ```
 
-###### Seeing the available resources
+##### Seeing the available resources
 *GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resourceService/resources*
 Response
 ```JSON
@@ -313,7 +322,7 @@ Response
 ]
 ```
 
-###### Running a query
+##### Running a query
 *POST https://<span></span>nhanes.hms.harvard.edu/rest/v1/queryService/runQuery*
 
 BODY
@@ -350,7 +359,7 @@ Response
 }
 ```
 
-###### Checking on the status of a query
+##### Checking on the status of a query
 
 *GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resultService/resultStatus/&lt;resultId&gt;*
 
@@ -367,7 +376,7 @@ Response
 *GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resultService/result/&lt;resultId&gt;/CSV*
 
 Response
-```CSV
+```
 PATIENT_NUM,Systolic Pressure
 10997,136
 10998,132.66667
@@ -395,7 +404,7 @@ PATIENT_NUM,Systolic Pressure
 22517,128.66667
 ```
 
-###### Ending a session
+##### Ending a session
 _GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/endSession_
 
 Response

@@ -1,8 +1,10 @@
-## Queries
-#### What are Queries?
+[Home](./index.md) > Queries
+
+# Queries
+### What are Queries?
 All queries against any system can all be broken down into one simple idea; I want this data, from these places, given these conditions. In SQL parlance this is the same as select Data from Tables where these Predicates are true. As the IRCT supports multiple different types of resources we designed a way to handle the variety of different types of queries a resource can provide. A query can be thought of as a simple way to retrieve data out of a resource.
 
-#### How do I Write a Query?
+### How do I Write a Query?
 Queries in the IRCT share a similar to structure as SQL queries. They can contain a combination of selects, wheres, and joins clauses as well as subqueries. These are put together into a JSON object as shown below.
 
 ```JSON
@@ -15,7 +17,7 @@ Queries in the IRCT share a similar to structure as SQL queries. They can contai
 }
 ```
 
-#### Where Clauses
+### Where Clauses
 
 The first step in writing a query is to choose the type of predicate you want to use in your query. The list of available predicates are described by the resource and can be obtained by the /resourceService/resources command as described above. The predicate object describes all the information you need to construct the where clause of your query. The basic structure of a where clause consists of the field that it is being run against, an alias of that field, what predicate is to be used, and what, if any, additional fields are needed. This can be seen below.
 
@@ -178,7 +180,7 @@ To use the above predicate to find all the patients in the NHANES resource that 
 ```
 
 
-#### Select Clauses
+### Select Clauses
 
 Select clauses allow the user to select which fields that they want to have returned from a resource. Some resources allow for additional operations on resources such as aggregate counts, min or max values, and other functions. These operations are described in the selectOperations field returned as part of the descriptor of the resource. The basic structure of a select object contains information about the field that is to be returned, an alias if requested, and an operation and any supporting fields that may be requested.
 
@@ -276,7 +278,7 @@ This operation allows us to do an aggregate count over the number of entries ret
 
 **Not all resources support select clauses.**
 
-#### Join Clauses
+### Join Clauses
 Join clauses allow a user to direct a resource to combine multiple datasets into one. A resource may support any number of different types of joins with each having different functionality. Not all resources support Joins, and those that do will have their description displayed in the joinOperations field of the resource description. More information about this is described above. Join objects are similar to both the select and where clauses. They contain three parts; The field object which describes which field is to be joined, joinType is the name of the type of join to be performed, and fields is an object of key/value pairs for any additional fields that can or need to be set to perform the join.
 
 
@@ -391,7 +393,7 @@ Example Join
 **Not all resources support join clauses**
 
 
-#### Sort Operations
+### Sort Operations
 
 
 ```JSON
@@ -440,7 +442,7 @@ Example Join
 
 **Not all resources support sort clauses**
 
-#### Subqueries
+### Subqueries
 Subqueries, when supported by a resource, allow for a user to perform multiple operations in a single step. Subqueries in the IRCT are constructed in the sam way as queries are. However subqueries are assigned names which are the key part of the key/value pair, with the subquery being the value. This allows for multiple subqueries to be declared in the same query. Subqueries support all the functionality of queries including subqueries. This allows the end user to create nested subqueries.
 
 ```JSON
@@ -453,7 +455,7 @@ Subqueries, when supported by a resource, allow for a user to perform multiple o
 
 **Not all resources support subqueries**
 
-#### Basic Queries
+### Basic Queries
 A basic query would consist of a where clause and possibly a select clause. Using the example in the quick start we can see that we want the mean systolic pressure from all entries in the NHANES database that have the gender Male.
 
 ```JSON
@@ -482,7 +484,7 @@ A basic query would consist of a where clause and possibly a select clause. Usin
 }
 ```
 
-#### Nested Queries
+### Nested Queries
 If a resource supports it queries can be fed as input into fields to allow for nested queries. Any field that supports the Query data type will allow for a nested query to be an input. In the example below the nested query returns data from the SciDB resource where the MetaDataI Family_ID field is equal to 11002. The result of this query are fed into a join operation which will perform a CROSSJOIN operation between the Individual_ID that is returned by the nested query, and the DataI Individual_ID. These results are then counted aggregated to get a count of the Individual_ID that is returned by the join.
 
 ```JSON
@@ -528,7 +530,7 @@ If a resource supports it queries can be fed as input into fields to allow for n
 }
 ```
 
-#### Advanced Queries
+### Advanced Queries
 Queries in the IRCT can be used to perform complicated multi-step procedures with one call. The below query performs several steps across several different Arrays in the SciDB resource to obtain the ten most common variants amongst individuals who are mothers.
 
 ```JSON

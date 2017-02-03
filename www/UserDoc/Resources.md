@@ -1,5 +1,7 @@
-## Resources
-#### What are Resources?
+[Home](./index.md) > Resources
+
+# Resources
+### What are Resources?
 Resources are loosely defined as being any outside application, or service that the IRCT communicates with. This includes resources that provide data such as i2b2/tranSMART, or services such as ExAC.
 
 ! Because the IRCT has the ability to communicate with a variety of different types of resources, and what type of implementation they support the IRCT needs to describe what they do to the end user.
@@ -8,7 +10,7 @@ Resources are loosely defined as being any outside application, or service that 
 
 ! We look more into the different parts of how to understand what a resource supports, and what you can do with it.
 
-#### Getting a List of Resources
+### Getting a List of Resources
 
 *GET /rest/v1/resourceService/resources*
 
@@ -308,7 +310,7 @@ Example Response
 ]
 ```
 
-#### Understanding Resource Components
+### Understanding Resource Components
 In this section we will look at the different parts of the JSON description of a resource. This is not an exhaustive list of all the different combinations that are possible but it will provide a general overview of the different features that a resource can expose.
 
 ```JSON
@@ -785,7 +787,7 @@ description | A description of the process
 fields | An array of fields that either have to or can be passed as part of the process. Fields are described above.
 returns | This is an optional field that describes what will be returned.
 
-#### Navigating Resources
+### Navigating Resources
 Resources that provide query functionality will typically have a collection of entities that can be queried upon. These entities can have different relationships with each other but are typically arranged in a tree structure (i.e. Parent/Child). All entities are assigned a unique identifier called the Path Unique Identifier (PUI). All paths to entities are delimited by a '/' character. The first part is always the resource name, while all proceeding parts is the IRCTs interpretation of the resources internal paths to a given entity.
 
 Example PUI

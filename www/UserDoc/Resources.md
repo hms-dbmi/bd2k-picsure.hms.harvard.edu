@@ -2,13 +2,9 @@
 
 # Resources
 ### What are Resources?
-Resources are loosely defined as being any outside application, or service that the IRCT communicates with. This includes resources that provide data such as i2b2/tranSMART, or services such as ExAC.
+Resources are loosely defined as being any outside application, or service that the IRCT communicates with. This includes resources that provide data such as i2b2/tranSMART, or services such as ExAC. Since the IRCT supports multiple different resource types the IRCT needs to describe what they can do. This helps to define what this 'Resource Driven API' can accomplish.
 
-! Because the IRCT has the ability to communicate with a variety of different types of resources, and what type of implementation they support the IRCT needs to describe what they do to the end user.
-
-! As described above this creates a Resource Driven API.
-
-! We look more into the different parts of how to understand what a resource supports, and what you can do with it.
+You can learn more about what resources are offered by default from the IRCT by visiting our Resource Interface wiki [here](https://github.com/hms-dbmi/IRCT-RI/wiki).
 
 ### Getting a List of Resources
 

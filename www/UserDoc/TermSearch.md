@@ -1,7 +1,7 @@
 [Home](./index.md) > Term Search
 
 # Term Search
-In order to help users to find terms that
+In order to help users to find terms that are spread across any given resource, or resources the IRCT supports term search. A user can search for a string, or they can search for an ontological term across a single resource, or across all resources. Not all resources support search by term, or ontological term and those that don't will return an empty array.
 
 ### Searching for a Term Across Resources
 *GET /rest/v1/resourceService/find?term=&lt;TERM&gt;*

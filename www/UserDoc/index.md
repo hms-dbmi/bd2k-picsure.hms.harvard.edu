@@ -65,7 +65,296 @@ Response
 Response
 ```JSON
 [
-
+  {
+    "id": 1,
+    "name": "nhanes",
+    "ontologyType": "TREE",
+    "implementation": "i2b2/tranSMART",
+    "relationships": [
+      "PARENT",
+      "CHILD",
+      "SIBLING",
+      "MODIFIER",
+      "TERM"
+    ],
+    "logicaloperators": [
+      "AND",
+      "OR",
+      "NOT"
+    ],
+    "predicates": [
+      {
+        "predicateName": "CONTAINS",
+        "displayName": "Contains",
+        "description": "Contains value",
+        "default": true,
+        "fields": [
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_MODIFIER",
+        "displayName": "Constrain by Modifier",
+        "description": "Constrain by Modifier",
+        "default": false,
+        "fields": [
+          {
+            "name": "Modifier",
+            "path": "MODIFIER_KEY",
+            "description": "Constrain by a modifier of this entity",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [],
+            "relationship": "MODIFIER"
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_VALUE",
+        "displayName": "Constrain by Value",
+        "description": "Constrains by Value",
+        "default": false,
+        "fields": [
+          {
+            "name": "Operator",
+            "path": "OPERATOR",
+            "description": "Operator",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "EQ",
+              "NE",
+              "GT",
+              "GE",
+              "LT",
+              "LE",
+              "BETWEEN",
+              "LIKE[exact]",
+              "LIKE[begin]",
+              "LIKE[end]",
+              "LIKE[contains]"
+            ]
+          },
+          {
+            "name": "Constraint",
+            "path": "CONSTRAINT",
+            "description": "Constraint",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "string",
+                "pattern": "^.*$",
+                "description": "A string value"
+              },
+              {
+                "name": "integer",
+                "pattern": "^\\d+$",
+                "description": "An integer value"
+              },
+              {
+                "name": "float",
+                "pattern": "^([+-]?\\d*\\.?\\d*)$",
+                "description": "A float value"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "Unit of Measure",
+            "path": "UNIT_OF_MEASURE",
+            "description": "Unit of Measure",
+            "required": false,
+            "dataTypes": [
+              {
+                "name": "string",
+                "pattern": "^.*$",
+                "description": "A string value"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [
+          "STRING",
+          "INTEGER",
+          "FLOAT"
+        ],
+        "paths": []
+      },
+      {
+        "predicateName": "CONSTRAIN_DATE",
+        "displayName": "Constrain by Date",
+        "description": "Constrains by Date",
+        "default": false,
+        "fields": [
+          {
+            "name": "From Inclusive",
+            "path": "FROM_INCLUSIVE",
+            "description": "Inclusive From Date",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          },
+          {
+            "name": "From Time",
+            "path": "FROM_TIME",
+            "description": "From Date Start or End",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "START_DATE",
+              "END_DATE"
+            ]
+          },
+          {
+            "name": "From Date",
+            "path": "FROM_DATE",
+            "description": "From Date",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "date",
+                "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                "description": "Date in yyyy-mm-dd format",
+                "typeof": "dateTime"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "To Inclusive",
+            "path": "TO_INCLUSIVE",
+            "description": "Inclusive To Date",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          },
+          {
+            "name": "To Time",
+            "path": "TO_TIME",
+            "description": "To Date Start or End",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "START_DATE",
+              "END_DATE"
+            ]
+          },
+          {
+            "name": "To Date",
+            "path": "TO_DATE",
+            "description": "To Date",
+            "required": true,
+            "dataTypes": [
+              {
+                "name": "date",
+                "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+                "description": "Date in yyyy-mm-dd format",
+                "typeof": "dateTime"
+              }
+            ],
+            "permittedValues": []
+          },
+          {
+            "name": "By Encounter",
+            "path": "ENOUNTER",
+            "description": "By Encounter",
+            "required": true,
+            "dataTypes": [],
+            "permittedValues": [
+              "YES",
+              "NO"
+            ]
+          }
+        ],
+        "dataTypes": [],
+        "paths": []
+      }
+    ],
+    "selectOperations": [],
+    "joins": [],
+    "sorts": [],
+    "processes": [],
+    "visualization": [],
+    "dataTypes": [
+      {
+        "name": "dateTime",
+        "pattern": "^(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2}):(\\d{2}):(\\d{2})$",
+        "description": "Date in yyyy-mm-dd hh:mm:ss format. With hours in 24 hour format"
+      },
+      {
+        "name": "date",
+        "pattern": "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$",
+        "description": "Date in yyyy-mm-dd format",
+        "typeof": "dateTime"
+      },
+      {
+        "name": "integer",
+        "pattern": "^\\d+$",
+        "description": "An integer value"
+      },
+      {
+        "name": "string",
+        "pattern": "^.*$",
+        "description": "A string value"
+      },
+      {
+        "name": "float",
+        "pattern": "^([+-]?\\d*\\.?\\d*)$",
+        "description": "A float value"
+      }
+    ]
+  }
 ]
 ```
 
@@ -82,13 +371,6 @@ BODY
 			    "dataType": "STRING"
 		    },
     		"alias": "Systolic Pressure"
-	  },
-      {
-		    "field": {
-			    "pui": "/nhanes/Demo/examination/examination/blood pressure/mean diastolic/",
-			    "dataType": "STRING"
-		    },
-    		"alias": "Diastolic Pressure"
 	  }
 	],
 	"where": [
@@ -101,17 +383,7 @@ BODY
 		    "fields": {
 			    "ENOUNTER": "YES"
 		    }
-	  },
-      {
-        "field": {
-          "pui": "/nhanes/Demo/demographics/demographics/AGE",
-          "dataType": "STRING"
-        },
-        "predicate": "CONTAINS",
-        "fields": {
-          "ENOUNTER": "YES"
-        }
-      }
+	  }
 	]
 }
 ```
@@ -119,7 +391,7 @@ BODY
 Response
 ```JSON
 {
-  "resultId": 158101
+  "resultId": 169801
 }
 ```
 
@@ -130,7 +402,7 @@ Response
 Response
 ```JSON
 {
-  "resultId": 158101,
+  "resultId": 169801,
   "status": "AVAILABLE"
 }
 ```
@@ -140,21 +412,42 @@ Response
 *GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resultService/result/&lt;resultId&gt;/CSV*
 
 Response
-```JSON
-{
-  "status": "success"
-}
+```CSV
+PATIENT_NUM,Systolic Pressure
+10997,136
+10998,132.66667
+22528,111.33333
+23658,115.33333
+22526,106.66667
+34229,99.33333
+22525,112.66667
+34227,117.33333
+10990,124
+25795,118
+34225,112.66667
+25796,102
+34226,120.66667
+10993,125.33333
+23651,109.33333
+34224,113.33333
+10996,143.33333
+23653,138.66667
+34222,102
+25794,114
+22518,109.33333
+22515,114
+34219,176
+22517,128.66667
 ```
 
 ###### Ending a session
 _GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/endSession_
 
 Response
-```CSV
-PATIENT_NUM,Systolic Pressure
-14759, 12.3
-
-...
+```JSON
+{
+  "status": "success"
+}
 ```
 
 ## Security
@@ -519,7 +812,7 @@ Example Response
 ```
 
 #### Understanding Resource Components
-In this section we will look at the different parts of the JSON description of a resource.
+In this section we will look at the different parts of the JSON description of a resource. This is not an exhaustive list of all the different combinations that are possible but it will provide a general overview of the different features that a resource can expose.
 
 ```JSON
 {
@@ -569,7 +862,7 @@ logicaloperators | Are the series of logical operators that can be used to join 
 ]
 }
 ```
-This predicates attribute contains a list of all the available operations that can be done during a query. Since the IRCT can support many different types of operations we will have multiple examples.
+This predicates attribute contains an array of all the available operations that can be done during a query. Since the IRCT can support many different types of operations we will have multiple examples.
 
 ```JSON
 {
@@ -600,7 +893,7 @@ This predicates attribute contains a list of all the available operations that c
 ```
 Key | Meaning
 -----|--------
-predicateName | The name of the predicate name that is to be referenced in a query
+predicateName | The name of the predicate that is used to create a query
 displayName | The name of the predicate to be displayed
 description | A description of the predicate
 default | The default predicate to be run
@@ -637,6 +930,171 @@ permittedValues | A list of possible values that can be set for this field
 Key | Meaning
 -----|--------
 relationship | This is the relationship that must be associated with a path in a query
+
+
+```JSON
+{
+"selectOperations": [
+  {
+    "operationName": "AGGREGATE",
+    "displayName": "Aggregate",
+    "description": "A set of aggregate functions that can be run",
+    "fields": [
+      {
+        "name": "Function",
+        "path": "FUNCTION",
+        "description": "Aggregate Function",
+        "required": true,
+        "dataTypes": [],
+        "permittedValues": [
+          "count",
+          "approxdc",
+          "avg",
+          "var",
+          "stdev",
+          "mad",
+          "min",
+          "max",
+          "median",
+          "first_value",
+          "last_value",
+          "sum",
+          "prod"
+        ]
+      },
+      {
+        "name": "Dimension",
+        "path": "DIMENSION",
+        "description": "Aggregate Dimension",
+        "required": false,
+        "dataTypes": [
+          {
+            "name": "array",
+            "pattern": ".*",
+            "description": "An array"
+          },
+          {
+            "name": "array",
+            "pattern": ".*",
+            "description": "An array"
+          }
+        ],
+        "permittedValues": []
+      }
+    ],
+    "dataTypes": [
+      "ATTRIBUTE",
+      "DIMENSION"
+    ],
+    "paths": []
+  }
+]
+}
+```
+
+```JSON
+{
+"joins": [
+  {
+    "name": "CROSSJOIN",
+    "displayName": "Cross Join",
+    "description": "Performs a cross-product join with equality predicates.",
+    "fields": [
+      {
+        "name": "Right",
+        "path": "RIGHT",
+        "description": "Right Query",
+        "required": true,
+        "dataTypes": [
+          {
+            "name": "subQuery",
+            "pattern": ".*",
+            "description": "A IRCT subquery"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Dimensions",
+        "path": "DIMENSIONS",
+        "description": "DIMENSIONS",
+        "required": true,
+        "dataTypes": [
+          {
+            "name": "dimension",
+            "pattern": "^.*$",
+            "description": "DIMENSION",
+            "typeof": "string"
+          },
+          {
+            "name": "array",
+            "pattern": ".*",
+            "description": "An array"
+          },
+          {
+            "name": "dimension",
+            "pattern": "^.*$",
+            "description": "DIMENSION",
+            "typeof": "string"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Left Alias",
+        "path": "LEFT_ALIAS",
+        "description": "Left Alias",
+        "required": false,
+        "dataTypes": [
+          {
+            "name": "dimension",
+            "pattern": "^.*$",
+            "description": "DIMENSION",
+            "typeof": "string"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Right Alias",
+        "path": "RIGHT_ALIAS",
+        "description": "Right Alias",
+        "required": false,
+        "dataTypes": [],
+        "permittedValues": []
+      }
+    ]
+  }
+]
+}
+```
+
+```JSON
+{
+"sorts": [
+  {
+    "operationName": "SORT",
+    "displayName": "Sort",
+    "description": "Sort",
+    "fields": [
+      {
+        "name": "Direction",
+        "path": "DIRECTION",
+        "description": "Direction",
+        "required": false,
+        "dataTypes": [],
+        "permittedValues": [
+          "DESC",
+          "ASC"
+        ]
+      }
+    ],
+    "dataTypes": [],
+    "paths": []
+  }
+]
+}
+```
 
 
 ```JSON
@@ -732,41 +1190,895 @@ relationship | This is the relationship that must be associated with a path in a
 }
 ```
 
+
+
 ```JSON
 {
   "processes": [
   ]
 }
 ```
+The processes attribute contains an array of all the possible operations that a resource can do.
 
 ```JSON
+{
+  "name": "RARITY",
+  "displayName": "Calculate Rarity",
+  "description": "Calculate the rarity of a variant against the ExAC database",
+  "fields": [
+    {
+      "name": "Result",
+      "path": "RESULTSET",
+      "description": "Result Set",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "resultSet",
+          "pattern": "^-?\\d{1,19}$",
+          "description": "A resultset identifier"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Chromosome",
+      "path": "CHROMOSOME",
+      "description": "Chromosome Column",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "column",
+          "pattern": "^.*$",
+          "description": "A column identifier"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Position",
+      "path": "POSITION",
+      "description": "Position Column",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "column",
+          "pattern": "^.*$",
+          "description": "A column identifier"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Reference",
+      "path": "REFERENCE",
+      "description": "Reference Column",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "column",
+          "pattern": "^.*$",
+          "description": "A column identifier"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Variant",
+      "path": "VARIANT",
+      "description": "Variant Column",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "column",
+          "pattern": "^.*$",
+          "description": "A column identifier"
+        }
+      ],
+      "permittedValues": []
+    }
+  ],
+  "returns": []
+}
+```
+Key | Meaning
+-----|--------
+name | The name of the process is used to execute the query
+displayName | The name of the process to be displayed
+description | A description of the process
+fields | An array of fields that either have to or can be passed as part of the process. Fields are described above.
+returns | This is an optional field that describes what will be returned.
 
+#### Navigating Resources
+Resources that provide query functionality will typically have a collection of entities that can be queried upon. These entities can have different relationships with each other but are typically arranged in a tree structure (i.e. Parent/Child). All entities are assigned a unique identifier called the Path Unique Identifier (PUI). All paths to entities are delimited by a '/' character. The first part is always the resource name, while all proceeding parts is the IRCTs interpretation of the resources internal paths to a given entity.
+
+Example PUI
+/nhanes/Demo/demographics/demographics/SEX/male
+
+The above path references the male sex demographics entity in the NHANES resource.
+
+
+*GET /rest/v1/resourceService/path/&lt;resource&gt;/&lt;path&gt;?relationship=&gt;relationship&lt;*
+
+Parameter | Required | Definition
+----------|----------|-----------
+resource | true | The name of the resource
+path | false | The Path Unique Identifier to get relationships from
+relationship | false | Default is child
+
+This request will return an array a list of entities.
+
+Example Request
+
+https://nhanes.hms.harvard.edu/rest/v1/resourceService/path/nhanes/Demo/demographics/demographics/RACE/
+
+Partial Response
+```JSON
+[
+  {
+    "pui": "/nhanes/Demo/demographics/demographics/RACE/black/",
+    "name": "black",
+    "displayName": "black",
+    "description": "",
+    "ontology": "",
+    "ontologyId": "",
+    "dataType": {
+      "name": "string",
+      "pattern": "^.*$",
+      "description": "A string value"
+    },
+    "relationships": [],
+    "counts": {
+      "count": 10282
+    },
+    "attributes": {
+      "valuetypeCd": null,
+      "level": "2",
+      "sourcesystemCd": null,
+      "columnname": "CONCEPT_PATH",
+      "tablename": "CONCEPT_DIMENSION",
+      "facttablecolumn": "CONCEPT_CD",
+      "name": "black",
+      "columndatatype": "T",
+      "visualattributes": "LA ",
+      "comment": null,
+      "dimcode": "\\demographics\\RACE\\black\\",
+      "synonymCd": "N",
+      "operator": "LIKE",
+      "key": "\\\\demographics\\demographics\\RACE\\black\\",
+      "tooltip": "\\demographics\\RACE\\black\\"
+    }
+  },
+  {
+    "pui": "/nhanes/Demo/demographics/demographics/RACE/mexican/",
+    "name": "mexican",
+    "displayName": "mexican",
+    "description": "",
+    "ontology": "",
+    "ontologyId": "",
+    "dataType": {
+      "name": "string",
+      "pattern": "^.*$",
+      "description": "A string value"
+    },
+    "relationships": [],
+    "counts": {
+      "count": 11535
+    },
+    "attributes": {
+      "valuetypeCd": null,
+      "level": "2",
+      "sourcesystemCd": null,
+      "columnname": "CONCEPT_PATH",
+      "tablename": "CONCEPT_DIMENSION",
+      "facttablecolumn": "CONCEPT_CD",
+      "name": "mexican",
+      "columndatatype": "T",
+      "visualattributes": "LA ",
+      "comment": null,
+      "dimcode": "\\demographics\\RACE\\mexican\\",
+      "synonymCd": "N",
+      "operator": "LIKE",
+      "key": "\\\\demographics\\demographics\\RACE\\mexican\\",
+      "tooltip": "\\demographics\\RACE\\mexican\\"
+    }
+  }
+]
 ```
 
+Entities
+
+Key | Meaning
+-----|--------
+pui | The path unique identifier
+name | The name of the entity
+displayName | The name to be displayed to the end user
+description | A description about the entity
+ontology | The ontology of the entity
+ontologyId | The id in the ontology that the field corresponds to
+dataType | The IRCT data type this entity should be treated as
+relationships | An relationships that this entity may have
+counts | An object containing all vales of counts
+attributes | These are resource unique attributes about the entity
+
 ## Term Search
+In order to help users to find terms that
+
 #### Searching for a Term Across Resources
 *GET /rest/v1/resourceService/find?term=&lt;TERM&gt;*
 
+Returns a list of entities that match the search term. This search will occur across all the resources that the IRCT instance has a connection to.
+
+**Not all resources support searching for terms and will return empty arrays**
+
+Example Response
+```JSON
+[
+  {
+    "pui": "/TM-DEV/Public Studies/465 Clinical Notes (cTAKES NLP)/01 SNOMED/Clinical finding/Disease/Disorder by body site/Disorder of body system/Disorder of respiratory system/Asthma/",
+    "name": "",
+    "displayName": "",
+    "description": "",
+    "ontology": "",
+    "ontologyId": "",
+    "relationships": [],
+    "counts": {},
+    "attributes": {}
+  },
+  {
+    "pui": "/TM-DEV/Public Studies/465 Clinical Notes (cTAKES NLP)/01 SNOMED/Clinical finding/Disease/Disorder by body site/Disorder of body system/Disorder of respiratory system/Asthma/Intermittent asthma/",
+    "name": "",
+    "displayName": "",
+    "description": "",
+    "ontology": "",
+    "ontologyId": "",
+    "relationships": [],
+    "counts": {},
+    "attributes": {}
+  },
+  {
+    "pui": "/TM-DEV/Public Studies/465 Clinical Notes (cTAKES NLP)/01 SNOMED/Clinical finding/Disease/Disorder by body site/Disorder of body system/Disorder of respiratory system/Asthma/Intermittent asthma/Mild intermittent asthma/",
+    "name": "",
+    "displayName": "",
+    "description": "",
+    "ontology": "",
+    "ontologyId": "",
+    "relationships": [],
+    "counts": {},
+    "attributes": {}
+  }
+]
+```
+
 #### Searching for a Term on a Resource
-*GET /rest/v1/resourceService/&lt;RESOURCE&gt;?term=&lt;TERM&gt;*
+To search across a single resource add the resource name to the URI. To search within a specific path inside a resource add the path information to the URI.
+
+*GET /rest/v1/resourceService/find/&lt;RESOURCE&gt;?term=&lt;TERM&gt;*
+
+**Not all resources support searching for a term, and those that don't will return an empty array**
+
+#### Searching for an Ontology Term
+To search for an ontological term instead of passing a term path parameter, pass an ontolgyTerm, and ontologyType parameter. The ontologyTerm will be the term as specified by the ontology, and the ontologyType will be the ontology. Additionally you may also restrict your term to one resource by adding the resource parameter as shown above.
+
+*GET /rest/v1/resourceService/find?ontologyTerm=&lt;TERM&gt;&ontologyType=lt;TYPE&gt;*
+
+**Not all resources support search for ontological terms, and those that don't will return an empty array**
 
 #### Using Search Extensions
-*GET /rest/v1/resourceService/&lt;RESOURCE&gt;?term=&lt;TERM&gt;&&lt;PARAMETER&gt;=&lt;VALUE&gt;*
+Some IRCT instances may support additional search extensions such as searching for synonyms. These additional parameters can be configured by adding additional path parameters to the URI.
+
+*GET /rest/v1/resourceService/find?term=&lt;TERM&gt;&&lt;PARAMETER&gt;=&lt;VALUE&gt;*
+
+**You can search using an extension across a single resource by adding the Resource Name**
+
 
 ## Queries
 #### What are Queries?
-Queries are a simple way to retrieve data out of a resource.
-
-In the IRCT they are resource agnostic, and are automatically translated to the native language of the resource.
+All queries against any system can all be broken down into one simple idea; I want this data, from these places, given these conditions. In SQL parlance this is the same as select Data from Tables where these Predicates are true. As the IRCT supports multiple different types of resources we designed a way to handle the variety of different types of queries a resource can provide. A query can be thought of as a simple way to retrieve data out of a resource.
 
 #### How do I Write a Query?
+Queries in the IRCT share a similar to structure as SQL queries. They can contain a combination of selects, wheres, and joins clauses as well as subqueries. These are put together into a JSON object as shown below.
+
+```JSON
+{
+  "select" : [],
+  "where" : [],
+  "join" : [],
+  "sort" : [],
+  "subquery" : []
+}
+```
+
+#### Where Clauses
+
+The first step in writing a query is to choose the type of predicate you want to use in your query. The list of available predicates are described by the resource and can be obtained by the /resourceService/resources command as described above. The predicate object describes all the information you need to construct the where clause of your query. The basic structure of a where clause consists of the field that it is being run against, an alias of that field, what predicate is to be used, and what, if any, additional fields are needed. This can be seen below.
+
+```JSON
+{
+  "field" : {},
+  "alias" : "Alias",
+  "predicate" : "Predicate Name",
+  "fields" : {}
+}
+```
+
+The field object contains two parts. The first is the PUI which contains the path to the field that is being queried upon. The second is the datatype of that field.
+
+```JSON
+{
+  "pui" : "path",
+  "dataType" : "Data Type"
+}
+```
+
+The fields object contains all additional predicate information that may or may not be required for the predicate that has been used. These additional fields are set as key value pairs in the fields object.
+
+```JSON
+{
+  "KEY" : "VALUE"
+}
+```
+
+Example Where Clause
+```JSON
+{
+  "predicateName": "CONTAINS",
+  "displayName": "Contains",
+  "description": "Contains value",
+  "default": true,
+  "fields": [],
+  "dataTypes": [
+    "STRING",
+    "INTEGER",
+    "FLOAT"
+  ],
+  "paths": []
+}
+```
+
+To use the above predicate to find all patients in the NHANES resource that contains the demographics/SEX/male attribute we would construct the following where clause.
+
+```JSON
+{
+  "field": {
+    "pui": "/nhanes/Demo/demographics/demographics/SEX/male",
+    "dataType": "STRING"
+  },
+  "predicate": "CONTAINS"
+}
+```
+
+Example Where Clause
+```JSON
+{
+  "predicateName": "CONSTRAIN_VALUE",
+  "displayName": "Constrain by Value",
+  "description": "Constrains by Value",
+  "default": false,
+  "fields": [
+    {
+      "name": "Operator",
+      "path": "OPERATOR",
+      "description": "Operator",
+      "required": true,
+      "dataTypes": [],
+      "permittedValues": [
+        "EQ",
+        "NE",
+        "GT",
+        "GE",
+        "LT",
+        "LE",
+        "BETWEEN",
+        "LIKE[exact]",
+        "LIKE[begin]",
+        "LIKE[end]",
+        "LIKE[contains]"
+      ]
+    },
+    {
+      "name": "Constraint",
+      "path": "CONSTRAINT",
+      "description": "Constraint",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "string",
+          "pattern": "^.*$",
+          "description": "A string value"
+        },
+        {
+          "name": "integer",
+          "pattern": "^\\d+$",
+          "description": "An integer value"
+        },
+        {
+          "name": "float",
+          "pattern": "^([+-]?\\d*\\.?\\d*)$",
+          "description": "A float value"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Unit of Measure",
+      "path": "UNIT_OF_MEASURE",
+      "description": "Unit of Measure",
+      "required": false,
+      "dataTypes": [
+        {
+          "name": "string",
+          "pattern": "^.*$",
+          "description": "A string value"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "By Encounter",
+      "path": "ENOUNTER",
+      "description": "By Encounter",
+      "required": true,
+      "dataTypes": [],
+      "permittedValues": [
+        "YES",
+        "NO"
+      ]
+    }
+  ],
+  "dataTypes": [
+    "STRING",
+    "INTEGER",
+    "FLOAT"
+  ],
+  "paths": []
+}
+```
+
+To use the above predicate to find all the patients in the NHANES resource that are older than or equal to 65 years old we would create the following object.
+
+```JSON
+{
+  "field": {
+    "pui": "/nhanes/Demo/demographics/demographics/AGE",
+    "dataType": "STRING"
+  },
+  "predicate": "CONSTRAIN_VALUE",
+  "fields" : {
+    "OPERATOR" : "GE",
+    "CONSTRAINT" : 65
+  }
+}
+```
+
+
+#### Select Clauses
+
+Select clauses allow the user to select which fields that they want to have returned from a resource. Some resources allow for additional operations on resources such as aggregate counts, min or max values, and other functions. These operations are described in the selectOperations field returned as part of the descriptor of the resource. The basic structure of a select object contains information about the field that is to be returned, an alias if requested, and an operation and any supporting fields that may be requested.
+
+```JSON
+{
+  "field" : {},
+  "alias" : "Alias",
+  "operation" : "Select Operation",
+  "fields" : {}
+}
+
+To create a simple select clause to return the patients mean systolic pressure from a query using the NHANES resource it would like the following.
+
+```JSON
+{
+  "field": {
+    "pui": "/nhanes/Demo/examination/examination/blood pressure/mean systolic/"
+  },
+  "alias": "Systolic Pressure"
+}
+```
+
+Select operations as describe above look like this
+
+```JSON
+{
+  "operationName": "AGGREGATE",
+  "displayName": "Aggregate",
+  "description": "A set of aggregate functions that can be run",
+  "fields": [
+    {
+      "name": "Function",
+      "path": "FUNCTION",
+      "description": "Aggregate Function",
+      "required": true,
+      "dataTypes": [],
+      "permittedValues": [
+        "count",
+        "approxdc",
+        "avg",
+        "var",
+        "stdev",
+        "mad",
+        "min",
+        "max",
+        "median",
+        "first_value",
+        "last_value",
+        "sum",
+        "prod"
+      ]
+    },
+    {
+      "name": "Dimension",
+      "path": "DIMENSION",
+      "description": "Aggregate Dimension",
+      "required": false,
+      "dataTypes": [
+        {
+          "name": "array",
+          "pattern": ".*",
+          "description": "An array"
+        },
+        {
+          "name": "array",
+          "pattern": ".*",
+          "description": "An array"
+        }
+      ],
+      "permittedValues": []
+    }
+  ],
+  "dataTypes": [
+    "ATTRIBUTE",
+    "DIMENSION"
+  ],
+  "paths": []
+}
+```
+
+This operation allows us to do an aggregate count over the number of entries returned for this query we create the following select clause object.
+
+```JSON
+{
+  "field": {
+    "pui": "/SciDB/MetaData"
+  },
+  "alias": "NUMBER_OF_FAMILY_MEMBERS",
+  "operation": "AGGREGATE",
+  "fields" : {
+    "FUNCTION" : "count"
+  }
+}
+```
+
+**Not all resources support select clauses.**
+
+#### Join Clauses
+Join clauses allow a user to direct a resource to combine multiple datasets into one. A resource may support any number of different types of joins with each having different functionality. Not all resources support Joins, and those that do will have their description displayed in the joinOperations field of the resource description. More information about this is described above. Join objects are similar to both the select and where clauses. They contain three parts; The field object which describes which field is to be joined, joinType is the name of the type of join to be performed, and fields is an object of key/value pairs for any additional fields that can or need to be set to perform the join.
+
+
+```JSON
+{
+  "field": {},
+  "joinType" : "Type of Join",
+  "fields" : {}
+}
+```
+
+**Joining across multiple resources is not currently allowed**
+
+Example Join description
+```JSON
+{
+    "name": "CROSSJOIN",
+    "displayName": "Cross Join",
+    "description": "Performs a cross-product join with equality predicates.",
+    "fields": [
+      {
+        "name": "Right",
+        "path": "RIGHT",
+        "description": "Right Query",
+        "required": true,
+        "dataTypes": [
+          {
+            "name": "subQuery",
+            "pattern": ".*",
+            "description": "A IRCT subquery"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Dimensions",
+        "path": "DIMENSIONS",
+        "description": "DIMENSIONS",
+        "required": true,
+        "dataTypes": [
+          {
+            "name": "dimension",
+            "pattern": "^.*$",
+            "description": "DIMENSION",
+            "typeof": "string"
+          },
+          {
+            "name": "array",
+            "pattern": ".*",
+            "description": "An array"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Left Alias",
+        "path": "LEFT_ALIAS",
+        "description": "Left Alias",
+        "required": false,
+        "dataTypes": [
+          {
+            "name": "dimension",
+            "pattern": "^.*$",
+            "description": "DIMENSION",
+            "typeof": "string"
+          }
+        ],
+        "permittedValues": []
+      },
+      {
+        "name": "Right Alias",
+        "path": "RIGHT_ALIAS",
+        "description": "Right Alias",
+        "required": false,
+        "dataTypes": [],
+        "permittedValues": []
+      }
+    ]
+  }
+```
+
+This operation will join an individual id from a Data array in the SciDB resource with the results of a query against the MetaData array where the Status field is equal to 'MO'.
+
+Example Join
+```JSON
+{
+        "field": {
+           "pui": "/SciDB/Data/Individual_ID"
+        },
+        "joinType" : "CROSSJOIN",
+        "fields" : {
+           "RIGHT" : {
+      			"where": [
+      				{
+        				"field": {
+          					"pui": "/SciDB/MetaData/Status",
+          					"dataType": "ATTRIBUTE"
+        				},
+        				"predicate": "FILTER",
+        				"fields": {
+          					"OPERATOR" : "EQ",
+          					"VALUE" : "mo"
+        				}
+      				}
+  				]
+           },
+           "DIMENSIONS" : ["Data.Individual_ID", "MetaData.Individual_ID"]
+        }
+}
+```
+
+**Not all resources support join clauses**
+
+
+#### Sort Operations
+
+
+```JSON
+{
+  "field": {},
+  "sortType" : "SORT",
+  "fields": {}
+}
+```
+
+```JSON
+{
+    "operationName": "SORT",
+    "displayName": "Sort",
+    "description": "Sort",
+    "fields": [
+      {
+        "name": "Direction",
+        "path": "DIRECTION",
+        "description": "Direction",
+        "required": false,
+        "dataTypes": [],
+        "permittedValues": [
+          "DESC",
+          "ASC"
+        ]
+      }
+    ],
+    "dataTypes": [],
+    "paths": []
+}
+```
+
+
+```JSON
+{
+  "field": {
+    "pui": "/SciDB/SQ/NUMBER_OF_MOTHERS_WITH_THIS_VARIANT"
+  },
+  "sortType" : "SORT",
+  "fields": {
+    "DIRECTION" : "DESC"
+  }
+}
+```
+
+**Not all resources support sort clauses**
+
+#### Subqueries
+Subqueries, when supported by a resource, allow for a user to perform multiple operations in a single step. Subqueries in the IRCT are constructed in the sam way as queries are. However subqueries are assigned names which are the key part of the key/value pair, with the subquery being the value. This allows for multiple subqueries to be declared in the same query. Subqueries support all the functionality of queries including subqueries. This allows the end user to create nested subqueries.
+
+```JSON
+{
+   "subquery" : {
+     "name" : {}
+   }
+}
+```
+
+**Not all resources support subqueries**
 
 #### Basic Queries
+A basic query would consist of a where clause and possibly a select clause. Using the example in the quick start we can see that we want the mean systolic pressure from all entries in the NHANES database that have the gender Male.
+
+```JSON
+{
+	"select": [
+	  {
+		    "field": {
+			    "pui": "/nhanes/Demo/examination/examination/blood pressure/mean systolic/",
+			    "dataType": "STRING"
+		    },
+    		"alias": "Systolic Pressure"
+	  }
+	],
+	"where": [
+	  {
+		    "field": {
+			    "pui": "/nhanes/Demo/demographics/demographics/SEX/male",
+    			"dataType": "STRING"
+	    	},
+		    "predicate": "CONTAINS",
+		    "fields": {
+			    "ENOUNTER": "YES"
+		    }
+	  }
+	]
+}
+```
 
 #### Nested Queries
+If a resource supports it queries can be fed as input into fields to allow for nested queries. Any field that supports the Query data type will allow for a nested query to be an input. In the example below the nested query returns data from the SciDB resource where the MetaDataI Family_ID field is equal to 11002. The result of this query are fed into a join operation which will perform a CROSSJOIN operation between the Individual_ID that is returned by the nested query, and the DataI Individual_ID. These results are then counted aggregated to get a count of the Individual_ID that is returned by the join.
+
+```JSON
+{
+  "select": [
+      {
+        "field": {
+          "pui": "/SciDB/MetaDataI/Individual_ID"
+        },
+        "operation": "AGGREGATE",
+        "fields" : {
+           "FUNCTION" : "count",
+           "DIMENSION" : "Individual_ID"
+        }
+      }
+  ],
+  "join" : [
+      {
+        "field": {
+           "pui": "/SciDB/DataI/Individual_ID"
+        },
+        "joinType" : "CROSSJOIN",
+        "fields" : {
+           "RIGHT" : {
+      			"where": [
+      				{
+        				"field": {
+          					"pui": "/SciDB/MetaDataI/Family_ID",
+          					"dataType": "ATTRIBUTE"
+        				},
+        				"predicate": "FILTER",
+        				"fields": {
+          					"OPERATOR" : "EQ",
+          					"VALUE" : "11002"
+        				}
+      				}
+  				]
+           },
+           "DIMENSIONS" : "MetaDataI.Individual_ID"
+        }
+      }
+    ]
+}
+```
 
 #### Advanced Queries
+Queries in the IRCT can be used to perform complicated multi-step procedures with one call. The below query performs several steps across several different Arrays in the SciDB resource to obtain the ten most common variants amongst individuals who are mothers.
 
+```JSON
+{
+  "subquery" : {
+      "SORTEDQ" : {
+        "subquery" : {
+          "SQ" : {
+  "select": [
+      {
+        "field": {
+          "pui": "/SciDB/MetaData/Individual_ID"
+        },
+        "alias": "NUMBER_OF_MOTHERS_WITH_THIS_VARIANT",
+        "operation": "AGGREGATE",
+        "fields" : {
+           "FUNCTION" : "count",
+           "DIMENSION" : ["Chr", "Start", "End"]
+
+        }
+      }
+  ],
+  "join" : [
+      {
+        "field": {
+           "pui": "/SciDB/Data/Individual_ID"
+        },
+        "joinType" : "CROSSJOIN",
+        "fields" : {
+           "RIGHT" : {
+      			"where": [
+      				{
+        				"field": {
+          					"pui": "/SciDB/MetaData/Status",
+          					"dataType": "ATTRIBUTE"
+        				},
+        				"predicate": "FILTER",
+        				"fields": {
+          					"OPERATOR" : "EQ",
+          					"VALUE" : "mo"
+        				}
+      				}
+  				]
+           },
+           "DIMENSIONS" : ["Data.Individual_ID", "MetaData.Individual_ID"]
+        }
+      }
+    ]
+    }},
+    "sort" : [
+      {
+      	"field": {
+          "pui": "/SciDB/SQ/NUMBER_OF_MOTHERS_WITH_THIS_VARIANT"
+        },
+        "sortType" : "SORT",
+        "fields": {
+          "DIRECTION" : "DESC"
+        }
+      }
+    ]
+}
+},
+	"where": [
+		{
+        	"field": {
+          		"pui": "/SciDB/SORTEDQ",
+          		"dataType": "ATTRIBUTE"
+        	},
+        	"predicate": "BETWEEN",
+        	"fields": {
+          		"LOWBOUNDS" : "0",
+          		"HIGHBOUNDS" : "10"
+        	}
+      	}
+  	]
+}
+```
 
 ## Processes
 #### What are Processes?

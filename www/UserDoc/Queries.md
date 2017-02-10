@@ -1,10 +1,10 @@
 [Home](./index.md) > Queries
 
 # Queries
-### What are Queries?
+## What are Queries?
 All queries against any system can all be broken down into one simple idea; I want this data, from these places, given these conditions. In SQL parlance this is the same as select Data from Tables where these Predicates are true. As the IRCT supports multiple different types of resources we designed a way to handle the variety of different types of queries a resource can provide. A query can be thought of as a simple way to retrieve data out of a resource.
 
-### How do I Write a Query?
+## How do I Write a Query?
 Queries in the IRCT share a similar to structure as SQL queries. They can contain a combination of selects, wheres, and joins clauses as well as subqueries. These are put together into a JSON object as shown below.
 
 ```JSON
@@ -606,5 +606,17 @@ Queries in the IRCT can be used to perform complicated multi-step procedures wit
         	}
       	}
   	]
+}
+```
+
+
+## How do I run a Query?
+Once the JSON has been created it needs to be submitted to the IRCT so that it can be evaluated and run. This is accomplished by creating a POST request against the runQuery function with the JSON as the payload. The user most be in a valid session at the time, otherwise the request will return an error. Any formatting, or invalid predicate requests will also result in an error being returned. If the query is successfully submitted then the IRCT will return back with a resultId. This id can be used to track the progress of the query and retrieve the results.
+
+*POST /rest/v1/queryService/runQuery*
+
+```JSON
+{
+  "resultId": 10153
 }
 ```

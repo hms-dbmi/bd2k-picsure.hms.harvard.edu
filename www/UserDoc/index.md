@@ -7,6 +7,8 @@
 * [Resources](./Resources.md)
 * [Term Search](./TermSearch.md)
 * [Queries](./Queries.md)
+* [Processes](./Processes.md)
+* [Results](./Results.md)
 
 ## Introduction
 #### Purpose of this Document

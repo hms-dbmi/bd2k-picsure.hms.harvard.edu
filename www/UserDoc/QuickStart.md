@@ -361,7 +361,7 @@ Response
 
 #### Checking on the status of a query
 
-*GET *GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/resultService/resultStatus/&lt;resultId&gt;*
+_GET https:/<span>/nhanes.hms.harvard.edu/</span>rest/v1/resultService/resultStatus/&lt;resultId&gt;_
 
 Response
 ```JSON

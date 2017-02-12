@@ -26,6 +26,7 @@ Response
 
 #### Seeing the available resources
 *GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/resourceService/resources*
+
 Response
 ```JSON
 [

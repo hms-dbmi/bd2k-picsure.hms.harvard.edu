@@ -11,7 +11,7 @@
 * [Results](./Results.md)
 
 #### Purpose of this Document
-This document will provide users with an understanding of how to interact with the Inter-Resource Communication Tool (IRCT). This includes an understanding of what the IRCT is, how to understand how to interact with resources it is connected to.
+This document will provide users with an understanding of how to interact with the Inter-Resource Communication Tool (IRCT). This includes an understanding of what the IRCT is, and how to interact with it and the resources it is connected to.
 
 This document is broken into eight sections. The first section provides an overview of the IRCT and dives into how a resource driven API, and individual components work. We then provide a quick start where users can quickly write their first query against the NHANES i2b2/tranSMART instance. We follow this up with an introduction into security and interacting with secure resources. We then explain more about resources, and how users can understand what services, queries, and processes they support. We follow this up by sections on searching for terms, writing queries, running processes, and finally retrieving results in different formats.
 

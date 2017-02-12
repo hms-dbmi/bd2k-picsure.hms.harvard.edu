@@ -1,12 +1,12 @@
 [Home](./index.md) > Resources
 
 # Resources
-### What are Resources?
+## What are Resources?
 Resources are loosely defined as being any outside application, or service that the IRCT communicates with. This includes resources that provide data such as i2b2/tranSMART, or services such as ExAC. Since the IRCT supports multiple different resource types the IRCT needs to describe what they can do. This helps to define what this 'Resource Driven API' can accomplish.
 
 You can learn more about what resources are offered by default from the IRCT by visiting our Resource Interface wiki [here](https://github.com/hms-dbmi/IRCT-RI/wiki).
 
-### Getting a List of Resources
+## Getting a List of Resources
 
 *GET /rest/v1/resourceService/resources*
 
@@ -306,7 +306,7 @@ Example Response
 ]
 ```
 
-### Understanding Resource Components
+## Understanding Resource Components
 In this section we will look at the different parts of the JSON description of a resource. This is not an exhaustive list of all the different combinations that are possible but it will provide a general overview of the different features that a resource can expose.
 
 ```JSON
@@ -591,102 +591,6 @@ relationship | This is the relationship that must be associated with a path in a
 }
 ```
 
-
-```JSON
-{
-    "id": 2,
-    "name": "ExAC",
-    "ontologyType": "TREE",
-    "implementation": "exac",
-    "relationships": [
-      "PARENT",
-      "CHILD"
-    ],
-    "processes": [
-      {
-        "name": "RARITY",
-        "displayName": "Calculate Rarity",
-        "description": "Calculate the rarity of a variant against the ExAC database",
-        "fields": [
-          {
-            "name": "Result",
-            "path": "RESULTSET",
-            "description": "Result Set",
-            "required": true,
-            "dataTypes": [
-              {
-                "name": "resultSet",
-                "pattern": "^-?\\d{1,19}$",
-                "description": "A resultset identifier"
-              }
-            ],
-            "permittedValues": []
-          },
-          {
-            "name": "Chromosome",
-            "path": "CHROMOSOME",
-            "description": "Chromosome Column",
-            "required": true,
-            "dataTypes": [
-              {
-                "name": "column",
-                "pattern": "^.*$",
-                "description": "A column identifier"
-              }
-            ],
-            "permittedValues": []
-          },
-          {
-            "name": "Position",
-            "path": "POSITION",
-            "description": "Position Column",
-            "required": true,
-            "dataTypes": [
-              {
-                "name": "column",
-                "pattern": "^.*$",
-                "description": "A column identifier"
-              }
-            ],
-            "permittedValues": []
-          },
-          {
-            "name": "Reference",
-            "path": "REFERENCE",
-            "description": "Reference Column",
-            "required": true,
-            "dataTypes": [
-              {
-                "name": "column",
-                "pattern": "^.*$",
-                "description": "A column identifier"
-              }
-            ],
-            "permittedValues": []
-          },
-          {
-            "name": "Variant",
-            "path": "VARIANT",
-            "description": "Variant Column",
-            "required": true,
-            "dataTypes": [
-              {
-                "name": "column",
-                "pattern": "^.*$",
-                "description": "A column identifier"
-              }
-            ],
-            "permittedValues": []
-          }
-        ],
-        "returns": []
-      }
-    ]
-}
-```
-
-
-
 ```JSON
 {
   "processes": [
@@ -783,7 +687,7 @@ description | A description of the process
 fields | An array of fields that either have to or can be passed as part of the process. Fields are described above.
 returns | This is an optional field that describes what will be returned.
 
-### Navigating Resources
+## Navigating Resources
 Resources that provide query functionality will typically have a collection of entities that can be queried upon. These entities can have different relationships with each other but are typically arranged in a tree structure (i.e. Parent/Child). All entities are assigned a unique identifier called the Path Unique Identifier (PUI). All paths to entities are delimited by a '/' character. The first part is always the resource name, while all proceeding parts is the IRCTs interpretation of the resources internal paths to a given entity.
 
 Example PUI

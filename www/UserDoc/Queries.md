@@ -24,8 +24,8 @@ The first step in writing a query is to choose the type of predicate you want to
 ```JSON
 {
   "field" : {},
-  "alias" : "Alias",
-  "predicate" : "Predicate Name",
+  "alias" : "<Alias>",
+  "predicate" : "<Predicate Name>",
   "fields" : {}
 }
 ```
@@ -34,8 +34,8 @@ The field object contains two parts. The first is the PUI which contains the pat
 
 ```JSON
 {
-  "pui" : "path",
-  "dataType" : "Data Type"
+  "pui" : "<Path Unique Identifier>",
+  "dataType" : "<Data Type>"
 }
 ```
 
@@ -43,7 +43,7 @@ The fields object contains all additional predicate information that may or may 
 
 ```JSON
 {
-  "KEY" : "VALUE"
+  "KEY" : "<VALUE>"
 }
 ```
 
@@ -187,8 +187,8 @@ Select clauses allow the user to select which fields that they want to have retu
 ```JSON
 {
   "field" : {},
-  "alias" : "Alias",
-  "operation" : "Select Operation",
+  "alias" : "<Alias>",
+  "operation" : "<Select Operation>",
   "fields" : {}
 }
 
@@ -285,7 +285,7 @@ Join clauses allow a user to direct a resource to combine multiple datasets into
 ```JSON
 {
   "field": {},
-  "joinType" : "Type of Join",
+  "joinType" : "<Type of Join>",
   "fields" : {}
 }
 ```
@@ -399,7 +399,7 @@ Example Join
 ```JSON
 {
   "field": {},
-  "sortType" : "SORT",
+  "sortType" : "<Type of Sort>",
   "fields": {}
 }
 ```
@@ -615,6 +615,14 @@ Once the JSON has been created it needs to be submitted to the IRCT so that it c
 
 *POST /rest/v1/queryService/runQuery*
 
+Response
+```JSON
+{
+  "resultId" : "<Result Id>"
+}
+```
+
+Example Response
 ```JSON
 {
   "resultId": 10153

@@ -10,8 +10,8 @@ Response
 ```JSON
 [
   {
-    "resultId" : "resultId",
-    "status" : "status"
+    "resultId" : "<Result Id>",
+    "status" : "<Status>"
   }
 ]
 ```
@@ -58,8 +58,8 @@ A user can request the status of an action by calling the resultStatus function.
 Response
 ```JSON
 {
-  "resultId" : "resultId",
-  "status" : "status"
+  "resultId" : "<Result Id>",
+  "status" : "<Status>"
 }
 ```
 
@@ -84,6 +84,11 @@ Example Response
 The IRCT can return the results of an action in severl different formats. The type of formats that can be returned for a user can be obtained by the availableFormats function. This will return a list of formats that the result can be converted to. Users can only retrieve the results of the actions that they created.
 
 *POST /rest/v1/resultService/availableFormats/&lt;resultId&gt;*
+
+Response
+```JSON
+[ "<Formats>"]
+```
 
 Example Response
 ```JSON

@@ -15,7 +15,7 @@ For this example we are going to query the NHANES i2b2/tranSMART resource to obt
 ![PICSURE API Key](./PicSureKey.png)
 
 ##### Starting a session
-*GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/startSession?key=&lt;key&gt;*
+*GET https:/<span></span>/hanes.hms.harvard.edu/rest/v1/securityService/startSession?key=&lt;key&gt;*
 
 Response
 ```JSON
@@ -25,7 +25,7 @@ Response
 ```
 
 ##### Seeing the available resources
-*GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resourceService/resources*
+*GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/resourceService/resources*
 Response
 ```JSON
 [
@@ -323,7 +323,7 @@ Response
 ```
 
 ##### Running a query
-*POST https://<span></span>nhanes.hms.harvard.edu/rest/v1/queryService/runQuery*
+*GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/queryService/runQuery*
 
 BODY
 ```JSON
@@ -361,7 +361,7 @@ Response
 
 ##### Checking on the status of a query
 
-*GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resultService/resultStatus/&lt;resultId&gt;*
+*GET *GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/resultService/resultStatus/&lt;resultId&gt;*
 
 Response
 ```JSON
@@ -373,7 +373,7 @@ Response
 
 
 ##### Getting the CSV results of a query
-*GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/resultService/result/&lt;resultId&gt;/CSV*
+*GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/resultService/result/&lt;resultId&gt;/CSV*
 
 Response
 ```
@@ -405,7 +405,7 @@ PATIENT_NUM,Systolic Pressure
 ```
 
 ##### Ending a session
-_GET https://<span></span>nhanes.hms.harvard.edu/rest/v1/securityService/endSession_
+*GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/securityService/endSession*
 
 Response
 ```JSON

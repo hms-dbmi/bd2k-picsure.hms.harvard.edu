@@ -307,7 +307,7 @@ Example Response
 ```
 
 ## Understanding Resource Components
-In this section we will look at the different parts of the JSON description of a resource. This is not an exhaustive list of all the different combinations that are possible but it will provide a general overview of the different features that a resource can expose.
+In this section we will look at the different parts of the JSON description of a resource. This is not an exhaustive list of all the different combinations that are possible but it will provide a general overview of the different features that a resource can expose. We accomplish this by dividing the JSON from the above example into several different parts, and describe each of those parts.
 
 ```JSON
 {
@@ -350,15 +350,45 @@ logicaloperators | Are the series of logical operators that can be used to join 
 
 **Not all resources will support logical operations**
 
+###Predicates
 
 ```JSON
 {
-"predicates": [
-]
+  "predicateName": "<Predicate Name",
+  "displayName": "<Display Name",
+  "description": "<Description>",
+  "default": true,
+  "relationship": "<Relationship>",
+  "fields": [],
+  "dataTypes": [],
+  "paths": []
 }
 ```
-This predicates attribute contains an array of all the available operations that can be done during a query. Since the IRCT can support many different types of operations we will have multiple examples.
 
+Key | Meaning
+-----|--------
+predicateName | The name of the predicate that is used to create a query
+displayName | The name of the predicate to be displayed
+description | A description of the predicate
+default | The default predicate to be run
+relationship | This is the relationship that must be associated with a path in a query
+fields | An array of fields that either have to or can be passed as part of the predicate for the query. Fields are described below.
+dataTypes | The data types that this predicate can be run on
+paths | The paths that this predicate can be run on
+
+
+Fields
+
+Key | Meaning
+-----|--------
+name | The name of the field as it is to be displayed
+path | The reference path of the fields as it is to be used in a query
+description | A description of the field
+required | Is this field required or not
+dataTypes | Types of data that can be passed as a value of this field
+permittedValues | A list of possible values that can be set for this field
+
+Example Predicate
 ```JSON
 {
   "predicateName": "CONTAINS",
@@ -368,7 +398,7 @@ This predicates attribute contains an array of all the available operations that
   "fields": [
     {
       "name": "By Encounter",
-      "path": "ENOUNTER",
+      "path": "ENCOUNTER",
       "description": "By Encounter",
       "required": true,
       "dataTypes": [],
@@ -386,30 +416,8 @@ This predicates attribute contains an array of all the available operations that
   "paths": []
 }
 ```
-Key | Meaning
------|--------
-predicateName | The name of the predicate that is used to create a query
-displayName | The name of the predicate to be displayed
-description | A description of the predicate
-default | The default predicate to be run
-fields | An array of fields that either have to or can be passed as part of the predicate for the query. Fields are described below.
-dataTypes | The data types that this predicate can be run on
-paths | The paths that this predicate can be run on
 
-
-Fields
-
-Key | Meaning
------|--------
-name | The name of the field as it is to be displayed
-path | The reference path of the fields as it is to be used in a query
-description | A description of the field
-required | Is this field required or not
-dataTypes | Types of data that can be passed as a value of this field
-permittedValues | A list of possible values that can be set for this field
-
-
-
+Example Predicate with Relationship
 ```JSON
 {
     "name": "Modifier",
@@ -422,183 +430,251 @@ permittedValues | A list of possible values that can be set for this field
 }
 ```
 
+
+
+###Select Operations
+
+```JSON
+{
+  "operationName": "<Select Operation Name>",
+  "displayName": "<Select Operation Display Name>",
+  "description": "<Description of the Select Operation>",
+  "fields": [],    
+  "dataTypes": [],
+  "paths": []
+}
+```
+
 Key | Meaning
 -----|--------
-relationship | This is the relationship that must be associated with a path in a query
+operationName | The name of the select operation that is used to create a query
+displayName | The name of the select operation to be displayed
+description | A description of the select operation
+fields | An array of fields that either have to or can be passed as part of the select operation for the query. Fields are described above.
+dataTypes | The data types that this select operation can be run on
+paths | The paths that this select operation can be run on
 
 
+Example Select Operation
 ```JSON
 {
-"selectOperations": [
-  {
-    "operationName": "AGGREGATE",
-    "displayName": "Aggregate",
-    "description": "A set of aggregate functions that can be run",
-    "fields": [
-      {
-        "name": "Function",
-        "path": "FUNCTION",
-        "description": "Aggregate Function",
-        "required": true,
-        "dataTypes": [],
-        "permittedValues": [
-          "count",
-          "approxdc",
-          "avg",
-          "var",
-          "stdev",
-          "mad",
-          "min",
-          "max",
-          "median",
-          "first_value",
-          "last_value",
-          "sum",
-          "prod"
-        ]
-      },
-      {
-        "name": "Dimension",
-        "path": "DIMENSION",
-        "description": "Aggregate Dimension",
-        "required": false,
-        "dataTypes": [
-          {
-            "name": "array",
-            "pattern": ".*",
-            "description": "An array"
-          },
-          {
-            "name": "array",
-            "pattern": ".*",
-            "description": "An array"
-          }
-        ],
-        "permittedValues": []
-      }
-    ],
-    "dataTypes": [
-      "ATTRIBUTE",
-      "DIMENSION"
-    ],
-    "paths": []
-  }
-]
+  "operationName": "AGGREGATE",
+  "displayName": "Aggregate",
+  "description": "A set of aggregate functions that can be run",
+  "fields": [
+    {
+      "name": "Function",
+      "path": "FUNCTION",
+      "description": "Aggregate Function",
+      "required": true,
+      "dataTypes": [],
+      "permittedValues": [
+        "count",
+        "approxdc",
+        "avg",
+        "var",
+        "stdev",
+        "mad",
+        "min",
+        "max",
+        "median",
+        "first_value",
+        "last_value",
+        "sum",
+        "prod"
+      ]
+    },
+    {
+      "name": "Dimension",
+      "path": "DIMENSION",
+      "description": "Aggregate Dimension",
+      "required": false,
+      "dataTypes": [
+        {
+          "name": "array",
+          "pattern": ".*",
+          "description": "An array"
+        },
+        {
+          "name": "array",
+          "pattern": ".*",
+          "description": "An array"
+        }
+      ],
+      "permittedValues": []
+    }
+  ],
+  "dataTypes": [
+    "ATTRIBUTE",
+    "DIMENSION"
+  ],
+  "paths": []
 }
 ```
 
-```JSON
-{
-"joins": [
-  {
-    "name": "CROSSJOIN",
-    "displayName": "Cross Join",
-    "description": "Performs a cross-product join with equality predicates.",
-    "fields": [
-      {
-        "name": "Right",
-        "path": "RIGHT",
-        "description": "Right Query",
-        "required": true,
-        "dataTypes": [
-          {
-            "name": "subQuery",
-            "pattern": ".*",
-            "description": "A IRCT subquery"
-          }
-        ],
-        "permittedValues": []
-      },
-      {
-        "name": "Dimensions",
-        "path": "DIMENSIONS",
-        "description": "DIMENSIONS",
-        "required": true,
-        "dataTypes": [
-          {
-            "name": "dimension",
-            "pattern": "^.*$",
-            "description": "DIMENSION",
-            "typeof": "string"
-          },
-          {
-            "name": "array",
-            "pattern": ".*",
-            "description": "An array"
-          },
-          {
-            "name": "dimension",
-            "pattern": "^.*$",
-            "description": "DIMENSION",
-            "typeof": "string"
-          }
-        ],
-        "permittedValues": []
-      },
-      {
-        "name": "Left Alias",
-        "path": "LEFT_ALIAS",
-        "description": "Left Alias",
-        "required": false,
-        "dataTypes": [
-          {
-            "name": "dimension",
-            "pattern": "^.*$",
-            "description": "DIMENSION",
-            "typeof": "string"
-          }
-        ],
-        "permittedValues": []
-      },
-      {
-        "name": "Right Alias",
-        "path": "RIGHT_ALIAS",
-        "description": "Right Alias",
-        "required": false,
-        "dataTypes": [],
-        "permittedValues": []
-      }
-    ]
-  }
-]
-}
-```
+###Join Operations
 
 ```JSON
 {
-"sorts": [
-  {
-    "operationName": "SORT",
-    "displayName": "Sort",
-    "description": "Sort",
-    "fields": [
-      {
-        "name": "Direction",
-        "path": "DIRECTION",
-        "description": "Direction",
-        "required": false,
-        "dataTypes": [],
-        "permittedValues": [
-          "DESC",
-          "ASC"
-        ]
-      }
-    ],
-    "dataTypes": [],
-    "paths": []
-  }
-]
+  "name": "<Join Operation Name>",
+  "displayName": "<Join Operation Display Name>",
+  "description": "<Description of the Join Operation>",
+  "fields": [],    
+  "dataTypes": [],
+  "paths": []
 }
 ```
 
+Key | Meaning
+-----|--------
+operationName | The name of the join operation that is used to create a query
+displayName | The name of the join operation to be displayed
+description | A description of the join operation
+fields | An array of fields that either have to or can be passed as part of the join operation for the query. Fields are described above.
+dataTypes | The data types that this join operation can be run on
+paths | The paths that this join operation can be run on
+
+Example Join Operation
 ```JSON
 {
-  "processes": [
+  "name": "CROSSJOIN",
+  "displayName": "Cross Join",
+  "description": "Performs a cross-product join with equality predicates.",
+  "fields": [
+    {
+      "name": "Right",
+      "path": "RIGHT",
+      "description": "Right Query",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "subQuery",
+          "pattern": ".*",
+          "description": "A IRCT subquery"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Dimensions",
+      "path": "DIMENSIONS",
+      "description": "DIMENSIONS",
+      "required": true,
+      "dataTypes": [
+        {
+          "name": "dimension",
+          "pattern": "^.*$",
+          "description": "DIMENSION",
+          "typeof": "string"
+        },
+        {
+          "name": "array",
+          "pattern": ".*",
+          "description": "An array"
+        },
+        {
+          "name": "dimension",
+          "pattern": "^.*$",
+          "description": "DIMENSION",
+          "typeof": "string"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Left Alias",
+      "path": "LEFT_ALIAS",
+      "description": "Left Alias",
+      "required": false,
+      "dataTypes": [
+        {
+          "name": "dimension",
+          "pattern": "^.*$",
+          "description": "DIMENSION",
+          "typeof": "string"
+        }
+      ],
+      "permittedValues": []
+    },
+    {
+      "name": "Right Alias",
+      "path": "RIGHT_ALIAS",
+      "description": "Right Alias",
+      "required": false,
+      "dataTypes": [],
+      "permittedValues": []
+    }
   ]
 }
 ```
-The processes attribute contains an array of all the possible operations that a resource can do.
+###Sort Operations
 
+```JSON
+{
+  "operationName": "<Sort Operation Name>",
+  "displayName": "<Sort Operation Display Name>",
+  "description": "<Description of the Sort Operation>",
+  "fields": [],    
+  "dataTypes": [],
+  "paths": []
+}
+```
+
+Key | Meaning
+-----|--------
+operationName | The name of the sort operation that is used to create a query
+displayName | The name of the sort operation to be displayed
+description | A description of the sort operation
+fields | An array of fields that either have to or can be passed as part of the sort operation for the query. Fields are described above.
+dataTypes | The data types that this sort operation can be run on
+paths | The paths that this sort operation can be run on
+
+Example Sort Operation
+```JSON
+{
+  "operationName": "SORT",
+  "displayName": "Sort",
+  "description": "Sort",
+  "fields": [
+    {
+      "name": "Direction",
+      "path": "DIRECTION",
+      "description": "Direction",
+      "required": false,
+      "dataTypes": [],
+      "permittedValues": [
+        "DESC",
+        "ASC"
+      ]
+    }
+  ],
+  "dataTypes": [],
+  "paths": []
+}
+```
+
+###Process Operations
+```JSON
+{
+  "name": "<Process Operation Name>",
+  "displayName": "<Process Operation Display Name>",
+  "description": "<Description of the Process Operation>",
+  "fields": [],    
+  "dataTypes": [],
+  "paths": []
+}
+```
+
+Key | Meaning
+-----|--------
+name | The name of the process operation that is used to create a query
+displayName | The name of the process operation to be displayed
+description | A description of the process operation
+fields | An array of fields that either have to or can be passed as part of the process operation for the query. Fields are described above.
+dataTypes | The data types that this process operation can be run on
+paths | The paths that this process operation can be run on
+
+Example process
 ```JSON
 {
   "name": "RARITY",
@@ -679,13 +755,6 @@ The processes attribute contains an array of all the possible operations that a 
   "returns": []
 }
 ```
-Key | Meaning
------|--------
-name | The name of the process is used to execute the query
-displayName | The name of the process to be displayed
-description | A description of the process
-fields | An array of fields that either have to or can be passed as part of the process. Fields are described above.
-returns | This is an optional field that describes what will be returned.
 
 ## Navigating Resources
 Resources that provide query functionality will typically have a collection of entities that can be queried upon. These entities can have different relationships with each other but are typically arranged in a tree structure (i.e. Parent/Child). All entities are assigned a unique identifier called the Path Unique Identifier (PUI). All paths to entities are delimited by a '/' character. The first part is always the resource name, while all proceeding parts is the IRCTs interpretation of the resources internal paths to a given entity.

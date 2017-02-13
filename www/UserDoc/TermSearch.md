@@ -60,7 +60,7 @@ To search across a single resource add the resource name to the URI. To search w
 ## Searching for an Ontology Term
 To search for an ontological term instead of passing a term path parameter, pass an ontolgyTerm, and ontologyType parameter. The ontologyTerm will be the term as specified by the ontology, and the ontologyType will be the ontology. Additionally you may also restrict your term to one resource by adding the resource parameter as shown above.
 
-*GET /rest/v1/resourceService/find?ontologyTerm=&lt;TERM&gt;&ontologyType=lt;TYPE&gt;*
+*GET /rest/v1/resourceService/find?ontologyTerm=&lt;TERM&gt;&ontologyType=&lt;TYPE&gt;*
 
 **Not all resources support search for ontological terms, and those that don't will return an empty array**
 

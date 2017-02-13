@@ -2,15 +2,15 @@
 
 # Queries
 ## What are Queries?
-All queries against any system can all be broken down into one simple idea; I want this data, from these places, given these conditions. In SQL parlance this is the same as select Data from Tables where these Predicates are true. As the IRCT supports multiple different types of resources we designed a way to handle the variety of different types of queries a resource can provide. A query can be thought of as a simple way to retrieve data out of a resource.
+All queries against any system can all be broken down into one simple idea; I want this data, from these places, given these conditions. In SQL parlance this is the same as select Data from Tables where these Predicates are true. As the IRCT supports multiple different types of resources we designed a way to handle the variety of different types of queries resources can provide. A query can be thought of as a simple way to retrieve data out of a resource.
 
 ## How do I Write a Query?
-Queries in the IRCT share a similar to structure as SQL queries. They can contain a combination of selects, wheres, and joins clauses as well as subqueries. These are put together into a JSON object as shown below.
+Queries in the IRCT share a similar to structure as SQL queries. They can contain a combination of selects, sorts, wheres, and joins clauses as well as subqueries. These are put together into a JSON object as shown below.
 
 ```JSON
 {
-  "select" : [],
   "where" : [],
+  "select" : [],
   "join" : [],
   "sort" : [],
   "subquery" : []
@@ -19,7 +19,7 @@ Queries in the IRCT share a similar to structure as SQL queries. They can contai
 
 ### Where Clauses
 
-The first step in writing a query is to choose the type of predicate you want to use in your query. The list of available predicates are described by the resource and can be obtained by the /resourceService/resources command as described above. The predicate object describes all the information you need to construct the where clause of your query. The basic structure of a where clause consists of the field that it is being run against, an alias of that field, what predicate is to be used, and what, if any, additional fields are needed. This can be seen below.
+The first step in writing a query is to choose the type of predicate you want to use in your query. The list of available predicates are described by the resource and can be obtained by the /rest/v1/resourceService/resources command as described in the Resources section. The predicate object describes all the information you need to construct the where clause of your query. The basic structure of a where clause consists of the field that it is being run against, an alias of that field, what predicate is to be used, and what, if any, additional fields are needed. This can be seen below.
 
 ```JSON
 {
@@ -30,11 +30,11 @@ The first step in writing a query is to choose the type of predicate you want to
 }
 ```
 
-The field object contains two parts. The first is the PUI which contains the path to the field that is being queried upon. The second is the datatype of that field.
+The field object contains two parts. The first is the Path Unique Identifier (PUI) which contains the path to the field that is being queried upon. The second is the datatype of that field.
 
 ```JSON
 {
-  "pui" : "<Path Unique Identifier>",
+  "pui" : "<Path Unique Identifier (PUI)>",
   "dataType" : "<Data Type>"
 }
 ```
@@ -182,7 +182,9 @@ To use the above predicate to find all the patients in the NHANES resource that 
 
 ### Select Clauses
 
-Select clauses allow the user to select which fields that they want to have returned from a resource. Some resources allow for additional operations on resources such as aggregate counts, min or max values, and other functions. These operations are described in the selectOperations field returned as part of the descriptor of the resource. The basic structure of a select object contains information about the field that is to be returned, an alias if requested, and an operation and any supporting fields that may be requested.
+Select clauses allow the user to select which fields that they want to have returned from a resource. Some resources allow for additional operations on selects such as aggregate counts, min or max values, and other functions. These operations are described in the selectOperations field returned as part of the descriptor of the resource.
+
+The basic structure of a select object contains information about the field that is to be returned, an alias if requested, and an operation and any supporting fields that may be requested.
 
 ```JSON
 {
@@ -203,7 +205,7 @@ To create a simple select clause to return the patients mean systolic pressure f
 }
 ```
 
-Select operations as describe above look like this
+An example of a supported select operation from a resource that allows the aggregation on a field is shown below.
 
 ```JSON
 {
@@ -276,10 +278,10 @@ This operation allows us to do an aggregate count over the number of entries ret
 }
 ```
 
-**Not all resources support select clauses.**
+**Not all resources support select clauses**
 
 ### Join Clauses
-Join clauses allow a user to direct a resource to combine multiple datasets into one. A resource may support any number of different types of joins with each having different functionality. Not all resources support Joins, and those that do will have their description displayed in the joinOperations field of the resource description. More information about this is described above. Join objects are similar to both the select and where clauses. They contain three parts; The field object which describes which field is to be joined, joinType is the name of the type of join to be performed, and fields is an object of key/value pairs for any additional fields that can or need to be set to perform the join.
+Join clauses allow a user to direct a resource to combine multiple datasets on a resource into one. A resource may support any number of different types of joins with each having different functionality. Not all resources support Joins, and those that do will have their description displayed in the joinOperations field of the resource description. More information about this is described above. Join objects are similar to both the select and where clauses. They contain three parts; The field object which describes which field is to be joined, joinType is the name of the type of join to be performed, and fields is an object of key/value pairs for any additional fields that can or need to be set to perform the join.
 
 
 ```JSON
@@ -290,7 +292,7 @@ Join clauses allow a user to direct a resource to combine multiple datasets into
 }
 ```
 
-**Joining across multiple resources is not currently allowed**
+**Joining across multiple resources is not currently supported**
 
 Example Join description
 ```JSON
@@ -394,7 +396,7 @@ Example Join
 
 
 ### Sort Operations
-
+Sort clauses direct the resource to return the dataset in a particular order. A resource may support several different types of sorts as described in part of the resource description. Sort operations are similar to other clauses as they have three parts; The field describing what field is to be sorted, the sortType identifying what sort operation to be run, and any additional fields that are needed to perform the sort operation.
 
 ```JSON
 {
@@ -404,6 +406,7 @@ Example Join
 }
 ```
 
+Example Sort Operation Description
 ```JSON
 {
     "operationName": "SORT",
@@ -427,7 +430,7 @@ Example Join
 }
 ```
 
-
+Example Sort Clause
 ```JSON
 {
   "field": {
@@ -443,7 +446,7 @@ Example Join
 **Not all resources support sort clauses**
 
 ### Subqueries
-Subqueries, when supported by a resource, allow for a user to perform multiple operations in a single step. Subqueries in the IRCT are constructed in the sam way as queries are. However subqueries are assigned names which are the key part of the key/value pair, with the subquery being the value. This allows for multiple subqueries to be declared in the same query. Subqueries support all the functionality of queries including subqueries. This allows the end user to create nested subqueries.
+Subqueries, when supported by a resource, allow for a user to perform multiple operations in a single step. Subqueries in the IRCT are constructed in the same way as queries are. However subqueries are assigned names which are the key part of the key/value pair, with the subquery being the value in the subquery object. This allows for multiple subqueries to be declared in the same query. Subqueries support all the functionality of queries including additional subqueries allowing for a user to create nested subqueries.
 
 ```JSON
 {
@@ -485,7 +488,7 @@ A basic query would consist of a where clause and possibly a select clause. Usin
 ```
 
 ### Nested Queries
-If a resource supports it queries can be fed as input into fields to allow for nested queries. Any field that supports the Query data type will allow for a nested query to be an input. In the example below the nested query returns data from the SciDB resource where the MetaDataI Family_ID field is equal to 11002. The result of this query are fed into a join operation which will perform a CROSSJOIN operation between the Individual_ID that is returned by the nested query, and the DataI Individual_ID. These results are then counted aggregated to get a count of the Individual_ID that is returned by the join.
+If a resource supports it queries can be use queries as input into fields. Any field that supports the Query data type will allow for a nested query to be an input. In the example below the nested query returns data from the SciDB resource where the MetaDataI Family_ID field is equal to 11002. The result of this query are fed into a join operation which will perform a CROSSJOIN operation between the Individual_ID that is returned by the nested query, and the DataI Individual_ID field. These results are then counted aggregated to get a count of the Individual_ID that is returned by the join.
 
 ```JSON
 {
@@ -611,7 +614,7 @@ Queries in the IRCT can be used to perform complicated multi-step procedures wit
 
 
 ## How do I run a Query?
-Once the JSON has been created it needs to be submitted to the IRCT so that it can be evaluated and run. This is accomplished by creating a POST request against the runQuery function with the JSON as the payload. The user most be in a valid session at the time, otherwise the request will return an error. Any formatting, or invalid predicate requests will also result in an error being returned. If the query is successfully submitted then the IRCT will return back with a resultId. This id can be used to track the progress of the query and retrieve the results.
+Once the JSON as described above has been created it needs to be submitted to the IRCT so that it can be evaluated and run. This is accomplished by creating a POST request against the runQuery function with the JSON as the payload. The user must be in a valid session at the time, otherwise the request will return an error. Any formatting, or invalid predicate requests will also result in an error being returned. If the query is successfully submitted then the IRCT will return back with a resultId. This id can be used to track the progress of the query and retrieve the results.
 
 *POST /rest/v1/queryService/runQuery*
 

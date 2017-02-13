@@ -114,7 +114,7 @@ To Use
 ```
 
 ## How do I run a Process?
-Once the JSON for the process has been created it needs to be submitted to the IRCT so that it can be evaluated and run. This is accomplished by creating a POST request against the runProcess function with the JSON as the payload. The user most be in a valid session at the time, otherwise the request will return an error. Any formatting, or invalid fields will also result in an error being returned. If the process is successfully submitted then the IRCT will return back with a resultId. This id can be used to track the progress of the process and can be used to retrieve the results.
+Once the JSON for the process has been created it needs to be submitted to the IRCT so that it can be evaluated and run. This is accomplished by creating a POST request against the runProcess function with the JSON as the payload. The user must be in a valid session at the time, otherwise the request will return an error. Any formatting, or invalid fields will also result in an error being returned. If the process is successfully submitted then the IRCT will return back with a resultId. This id can be used to track the progress of the process and can be used to retrieve the results.
 
 *POST /rest/v1/processService/runProcess*
 

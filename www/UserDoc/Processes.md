@@ -2,7 +2,7 @@
 
 # Processes
 ## What are Processes?
-Processes are any type of action that can be performed by a resource. These are typically specialized services that a resource offer that would be impractical, or computationally inefficient to run locally. The IRCT can use these outside processes by either passing the results of another action(e.g. Query) to it, or by strictly passing parameters to it in a similar manner as running a query.
+Processes are any type of method that can be performed by a resource. These are typically specialized services that a resource offer that would be impractical, or computationally inefficient to run locally. The IRCT can use these outside processes by either passing the results of another action(e.g. Query) to it, or by strictly passing parameters to it in a similar manner as running a query.
 
 ## How do I Write a Process?
 Processes in the IRCT are run by passing both the resource name, and process name that it supports. Any fields that are needed are put in a fields object where the key is the field name, and the value of that field for that process.

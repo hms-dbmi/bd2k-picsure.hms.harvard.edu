@@ -7,7 +7,7 @@ One of the features of the IRCT is that allows for users to interact with differ
 Since the IRCT allows for multiple actions then the means by which the user communicates with the IRCT needs to support cookies. You should check with the library or program that you are using to make the sure the calls allow for the proper handling of cookies.
 
 ### Obtaining Keys
-A user can obtain keys in one of two ways. The first, and more popular way, is through another system such as i2b2/tranSMART. The second way is by submitting a valid Java Web Token (JWT) to the IRCT security service requesting a token. This can be accomplished by calling doing the Security Services Create Key function. Both of these methods result in an end user obtaining a randomly generated and unique 26 character alphanumeric string.
+A user can obtain keys in one of two ways. The first, and more popular way, is through another system such as i2b2/tranSMART. The second way is by submitting a valid Java Web Token (JWT) to the IRCT security service requesting a token. This can be accomplished by calling doing the Security Services Create Key function. Both of these methods result in the user obtaining a randomly generated and unique 26 character alphanumeric string.
 
 _GET /rest/v1/securityService/createKey_
 
@@ -30,11 +30,31 @@ Example Response
 }
 ```
 
-### Using Keys
+### Using Keys to Start a Secure Session
 Keys are a simple way to start a secure session with the IRCT so that they can then interact with other resources. Keys expire after a set period of time. Users should check with their IRCT administrator to see how long their keys are valid.
 
 
 *GET /rest/v1/securityService/startSession?key=&lt;key&gt;*
+
+Response
+```JSON
+{
+  "status": "<status>"
+}
+```
+
+
+Example Response
+```JSON
+{
+  "status": "success"
+}
+```
+
+### Ending a Secure Session
+When a user is finished with their session they can end it by submitting a request to the end session function. This will result in the users session being ended, all further secure requests will be blocked until the user starts a secure session again.
+
+*GET /rest/v1/securityService/endSession*
 
 Response
 ```JSON

@@ -765,7 +765,7 @@ Example PUI
 The above path references the male sex demographics entity in the NHANES resource.
 
 
-*GET /rest/v1/resourceService/path/&lt;resource&gt;/&lt;path&gt;?relationship=&gt;relationship&lt;*
+*GET /rest/v1/resourceService/path/&lt;resource&gt;/&lt;path&gt;?relationship=&lt;relationship&gt;*
 
 Parameter | Required | Definition
 ----------|----------|-----------

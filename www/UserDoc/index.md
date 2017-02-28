@@ -9,6 +9,7 @@
 * [Queries](./Queries.md)
 * [Processes](./Processes.md)
 * [Results](./Results.md)
+* [Release Notes](./ReleaseNotes.md)
 
 #### Purpose of this Document
 This document will provide users with an understanding of how to interact with the Inter-Resource Communication Tool (IRCT). This includes an understanding of what the IRCT is, and how to interact with it and the resources it is connected to.

@@ -15,7 +15,7 @@ For this example we are going to query the NHANES i2b2/tranSMART resource to obt
 ![PICSURE API Key](./PicSureKey.png)
 
 #### Starting a session
-*GET https:/<span></span>/hanes.hms.harvard.edu/rest/v1/securityService/startSession?key=&lt;key&gt;*
+*GET https:/<span></span>/nhanes.hms.harvard.edu/rest/v1/securityService/startSession?key=&lt;key&gt;*
 
 Response
 ```JSON

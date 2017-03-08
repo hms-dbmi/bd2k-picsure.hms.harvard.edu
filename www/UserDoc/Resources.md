@@ -431,6 +431,45 @@ Example Predicate with Relationship
 ```
 
 
+###Select Fields
+Resources in the IRCT can support fields that are not associated with a select operation.
+
+```JSON
+{
+  "name" : "<Select Field Name>",
+  "path" : "<Select Path>",
+  "description" : "<Description of the Select Field>",
+  "required" : "<Boolean if the field is required>",
+  "dataTypes" : "<Data Types>",
+  "permittedValues" : "<An optional list of permitted values>"
+}
+
+```
+
+Key | Meaning
+-----|--------
+name | The name of the select field as it is to be displayed
+path | The reference path of the select field as it is to be used in a query
+description | A description of the select field
+required | Is this select field required or not
+dataTypes | Types of data that can be passed as a value of this select field
+permittedValues | A list of possible values that can be set for this select field
+
+
+Example Select Field
+```JSON
+{
+  "name": "Compact",
+  "path": "COMPACT",
+  "description": "Compact the wildcard columns down to the parent level",
+  "required": false,
+  "dataTypes": [],
+  "permittedValues": [
+    "TRUE",
+    "FALSE"
+  ]
+}
+```
 
 ###Select Operations
 

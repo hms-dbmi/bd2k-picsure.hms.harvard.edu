@@ -2,6 +2,9 @@
 
 # Release Notes
 
+### 1.4
+This release provides support for joining two or more results from different resources. These joins can be of type; Full Outer, Left Outer, Right Outer, Inner and Union. It also includes support for select clauses that have fields that are not associated with an operation. The requirement for the encounter field in predicates for the i2b2/tranSMART resource interface was removed. New select fields were added that allow for wildcard searching, and column compaction were added. Additionally, more information is now included when an action fails. Some additional code cleanup was also completed as part of this release.
+
 ### 1.3.2
 Updated the Result field to include information about what part of the execution process created this result (i.e. EXECUTION/ACTION)
 

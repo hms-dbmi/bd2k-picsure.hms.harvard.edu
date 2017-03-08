@@ -8,6 +8,7 @@
 * [Term Search](./TermSearch.md)
 * [Queries](./Queries.md)
 * [Processes](./Processes.md)
+* [Joins](./Joins.md)
 * [Results](./Results.md)
 * [Release Notes](./ReleaseNotes.md)
 

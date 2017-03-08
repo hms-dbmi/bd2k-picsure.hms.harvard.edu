@@ -179,8 +179,7 @@ To use the above predicate to find all the patients in the NHANES resource that 
 }
 ```
 
-
-### Select Clauses
+### Select Clauses and Fields
 
 Select clauses allow the user to select which fields that they want to have returned from a resource. Some resources allow for additional operations on selects such as aggregate counts, min or max values, and other functions. These operations are described in the selectOperations field returned as part of the descriptor of the resource.
 
@@ -193,6 +192,7 @@ The basic structure of a select object contains information about the field that
   "operation" : "<Select Operation>",
   "fields" : {}
 }
+```
 
 To create a simple select clause to return the patients mean systolic pressure from a query using the NHANES resource it would like the following.
 
@@ -279,6 +279,24 @@ This operation allows us to do an aggregate count over the number of entries ret
 ```
 
 **Not all resources support select clauses**
+
+Select fields allow for the user to pass fields to a select operation that don't correspond to an operation. Not all resources will support select fields. Passing select fields in a query is no different than setting the fields for a select operation. The only difference is that the operation fields is kept blank.
+
+```JSON
+{
+  "field": {
+    "pui": "/SSC DEV/Demo/SFARI_Simplex_Collection_v15/SFARI_Simplex_Collection_v15/Clinical/ssc_commonly_used/*",
+    "dataType": "STRING"
+  },
+  "fields" : {
+    "COMPACT" : "TRUE",
+    "REMOVEPREPEND" : "TRUE"
+  }
+}
+```
+
+**Not all resources support select fields**
+**Select fields and clauses can be used together**
 
 ### Join Clauses
 Join clauses allow a user to direct a resource to combine multiple datasets on a resource into one. A resource may support any number of different types of joins with each having different functionality. Not all resources support Joins, and those that do will have their description displayed in the joinOperations field of the resource description. More information about this is described above. Join objects are similar to both the select and where clauses. They contain three parts; The field object which describes which field is to be joined, joinType is the name of the type of join to be performed, and fields is an object of key/value pairs for any additional fields that can or need to be set to perform the join.

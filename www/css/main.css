@@ -160,7 +160,7 @@ body {
  }
 
  .versionText {
-   
+
  }
 
 /**
@@ -192,7 +192,9 @@ body {
     width: 100%;
 }
 
-.componentOutCell {text-align: center;}
+.componentOutCell {
+  text-align: center;
+}
 
 /**
  * Animation

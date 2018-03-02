@@ -1,10 +1,10 @@
 {
-  "name": "HMS ExAC",
-  "homepage": "http://exac.hms.harvard.edu",
+  "name": "BD2K PIC-SURE RESTful API",
+  "homepage": "http://bd2k-picsure.hms.harvard.edu/",
   "authors": [
-    "(Jeremy R. Easton-Marks <Jeremy_Easton-Marks@hms.harvard.edu>)"
+    "(Avillach Lab Developers <avillach_lab_developers@googlegroups.com>)"
   ],
-  "description": "The HMS ExAC API adds REST API functionality to the ExAC Web Browser",
+  "description": "The BD2K PIC-SURE IRCT-UI provides a set of reusable components that interact with the IRCT application.",
   "main": "index.html",
   "license": "MPL2",
   "private": true,

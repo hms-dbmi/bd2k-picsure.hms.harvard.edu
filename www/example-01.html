@@ -5,8 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description"
-	content="The BD2K PIC-SURE IRCT-UI provides a set of reusable components that interact with the IRCT application.">
-<meta name="author" content="Jeremy R. Easton-Marks">
+	content="The BD2K PIC-SURE API provides access and querying capabilities
+	to various medical datasources." />
+<meta name="author" content="avillach_lab_developers@googlegroups.com" />
 
 <title>BD2K PIC-SURE RESTful API</title>
 
@@ -29,17 +30,16 @@
   </nav>
   <!-- END HEADER -->
   <div class="container-fluid">
-    <!-- START NAVIGATION -->
+		<!-- START NAVIGATION -->
 		<div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
 		    <ul class="nav nav-sidebar">
-          <li class="mainNavHeader active"><a href="/index.html">Overview</a></li>
-          <li><a href="more.html">Learn More</a></li>
-          <li><a href="example-01.html">Example</a></li>
-					<li><a href="version.html">Version</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li class="mainNavHeader active"><a href="example-01.html">Example 01</a></li>
         </ul>
 		    <ul class="nav nav-sidebar">
-          <li class="mainNavHeader"><a href="/rest.html">REST API</a></li>
+          <li><a href="rest.html">REST API</a></li>
           <li><a href="rest.html#Security">Security</a></li>
           <li><a href="rest.html#Resource">Resource</a></li>
           <li><a href="rest.html#Query">Query</a></li>
@@ -47,7 +47,8 @@
           <li><a href="rest.html#Result">Result</a></li>
         </ul>
 				<ul class="nav nav-sidebar">
-          <li class="mainNavHeader"><a href="https://github.com/hms-dbmi/IRCT" target="_blank">IRCT Repo (GitHub)</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT">GitHub Repo</a></li>
+					<li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/releases">Releases</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-CL" > CL</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-API" > API</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-EXT" > EXT</a></li>
@@ -56,6 +57,7 @@
       </div>
     </div>
     <!-- END NAVIGATION -->
+
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
       <div class="row restDocRow" id="Introduction">
         <div class="col-xs-12 col-sm-12 docRowText">
@@ -71,29 +73,51 @@
                 <tr>
                   <th>Step</th>
                   <th>Command</th>
-                  <th>Output</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Get the BD2K PIC-SURE API Key</td>
-                  <td>Go to nhanes.hms.harvard.edu, and click the Public User button on the top right, and then the User Profile from the dropdown menu. In the top right you will see an alphanumeric key. Copy that key</td>
-                  <td></td>
+                  <td>Get the BD2K PIC-SURE API Token</td>
+                  <td>Go to <a href="nhanes.hms.harvard.edu" target="_blank">nhanes.hms.harvard.edu</a>,
+										and click the Public User button on the top right, and then
+										the User Profile from the dropdown menu. <br />
+										The UserProfile page contains a "Token" tab, where you will
+										find a unique token, which is required to access the PIC-SURE API.
+										Copy this long string onto your clipboard.<br /><br />
+										On a UNIX system, create an environment variable, <code>NHANES_TOKEN</code> and
+										store the value of the token in that variable (it will be
+										used in the below examples.)<br /><br />
+										<code>export NHANES_TOKEN="eyJ0eXAiOiJKV ... HZq4D7JnvFJE"</code>
+									</td>
                 </tr>
                 <tr>
-                 <td>Start a secure session with API Key</td>
-                 <td>/rest/v1/securityService/startSession?key=mcljn8qlu742g93gpu7teb8sna</td>
-                 <td>
-<pre>
-{
-  "status": "success"
-}
-</pre>
-                 </td>
+                 <td>Test that you have access to the PIC-SURE API (optional)</td>
+                 <td><b>cURL</b><br />
+									 <code>
+										 curl -H "Authorization: Bearer ${NHANES_TOKEN}" \<br />
+										 	&nbsp;&nbsp;"http://nhanes.hms.harvard.edu/rest/v1/systemService/about"
+									 </code>  <br /><br />
+								 <b>HTTP_RESPONSE:</b><br />
+								 <code>
+								 {
+								   "app": "1.4.2",
+								   ...
+								   "user": {
+								     "email":"&lt;VALID_EMAIL_ADDRESS&gt;"
+								   }
+								 }
+							 </code><br /><br />
+							 </td>
                 </tr>
                 <tr>
                  <td>Run a Query</td>
-                 <td>/rest/v1/queryService/runQuery
+                 <td><b>cURL:</b><br />
+									 <code>
+										 curl -H "Authorization: Bearer ${NHANES_TOKEN}" \<br />
+										 	&nbsp;&nbsp; --data @query.json \<br />
+										 	&nbsp;&nbsp;"http://nhanes.hms.harvard.edu/rest/v1/queryService/runQuery"
+									 </code>  <br /><br />
+									 where the <code>query.json</code> file contains the following query:<br />
 <pre>
 {
   "select": [
@@ -113,71 +137,81 @@
         },
         "predicate": "CONTAINS",
         "fields": {
-          "ENOUNTER": "YES"
+          "ENCOUNTER": "YES"
         }
       }
   ]
 }
 </pre>
 
-                 </td>
-                 <td>
-<pre>
-{
-  "resultId": 22449
-}
-</pre>
+	<b>HTTP_RESPONSE:</b><br />
+	<code>
+		{
+		  "resultId": 22449
+		}
+	</code>
+
                  </td>
                 </tr>
                 <tr>
                  <td>Check the status of the result</td>
-                 <td>/rest/v1/resultService/resultStatus/22449</td>
-                 <td>
-<pre>
-{
-  "resultId": 22449,
-  "status": "AVAILABLE"
-}
-</pre>
-                 </td>
+                 <td>Use the previously returned resultId, to check the status.<br /><br />
+									 <b>cURL</b><br />
+									 <code>
+									 curl -H "Authorization: Bearer ${NHANES_TOKEN}" \<br />
+									   http://nhanes.hms.harvard.edu/rest/v1/resultService/resultStatus/22449
+								 </code><br />
+								 <br />
+								<b>HTTP_RESPONSE:</b><br />
+								<code>
+									{
+									  "resultId": 22449,
+									  "status": "AVAILABLE"
+									}
+								</code><br />
+								<br />
+								Other options for <code>status</code> value are <code>RUNNING</code> or <code>ERROR</code><br />
+								<br />
+							 </td>
                 </tr>
                 <tr>
                  <td>Check the available formats for the result</td>
-                 <td>/rest/v1/resultService/availableFormats/22449</td>
                  <td>
-<pre>
-[
-  "JSON",
-  "XML",
-  "XLSX",
-  "CSV"
-]
-</pre>
-                 </td>
+								 <b>cURL:</b><br />
+								 <code>
+									 curl -H "Authorization: Bearer ${NHANES_TOKEN}" \<br />
+									 /rest/v1/resultService/availableFormats/22449
+								 </code><br />
+								 <br />
+								 <b>HTTP_RESPONSE:</b><br />
+								 <code>
+									 [
+									   "JSON",
+									   "XML",
+									   "XLSX",
+									   "CSV"
+									 ]
+								 </code>
+							 	</td>
                 </tr>
                 <tr>
                  <td>Download the results as a CSV</td>
-                 <td>/rest/v1/resultService/result/22449/CSV?download=yes</td>
                  <td>
-File should be downloaded to your computer.
-                 </td>
+									 <b>cURL:</b><br />
+									 <code>
+										 curl -H "Authorization: Bearer ${NHANES_TOKEN}" \<br />
+										 http://nhanes.hms.harvard.edu/rest/v1/resultService/result/22449/CSV?download=yes
+									 </code><br />
+									 <br />
+									 <b>HTTP_RESPONSE:</b><br />
+									 <code>
+										 # File should be downloaded to your computer.
+									 </code>
+								 </td>
                 </tr>
-                <tr>
-                 <td>End the session</td>
-                 <td>/rest/v1/securityService/endSession</td>
-                 <td>
-<pre>
-{
-  "status": "success"
-}
-</pre>
-                 </td>
-                </tr>
-
               </tbody>
             </table>
           </div>
-
         </div>
   </div>
 

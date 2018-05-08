@@ -110,7 +110,7 @@ body {
   min-height: 200px;
   border-bottom: 1px lightgrey solid;
   padding-top: 5px;
-  min-height: 200px;
+  min-height: 40px;
 }
 
 .moreRow {
@@ -120,6 +120,11 @@ body {
 
 .docRowHeader {
   font-size: 30px;
+  font-weight: bolder;
+}
+
+.docRowSubHeader {
+  font-size: 18px;
   font-weight: bolder;
 }
 

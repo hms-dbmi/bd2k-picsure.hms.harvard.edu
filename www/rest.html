@@ -29,17 +29,16 @@
   </nav>
   <!-- END HEADER -->
   <div class="container-fluid">
-    <!-- START NAVIGATION -->
+		<!-- START NAVIGATION -->
 		<div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
 		    <ul class="nav nav-sidebar">
-          <li class="mainNavHeader active"><a href="/index.html">Overview</a></li>
-          <li><a href="more.html">Learn More</a></li>
-          <li><a href="example-01.html">Example</a></li>
-					<li><a href="version.html">Version</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="overview.html">Overview</a></li>
+          <li><a href="example-01.html">Example 01</a></li>
         </ul>
 		    <ul class="nav nav-sidebar">
-          <li class="mainNavHeader"><a href="/rest.html">REST API</a></li>
+          <li class="mainNavHeader active"><a href="rest.html">REST API</a></li>
           <li><a href="rest.html#Security">Security</a></li>
           <li><a href="rest.html#Resource">Resource</a></li>
           <li><a href="rest.html#Query">Query</a></li>
@@ -47,7 +46,8 @@
           <li><a href="rest.html#Result">Result</a></li>
         </ul>
 				<ul class="nav nav-sidebar">
-          <li class="mainNavHeader"><a href="https://github.com/hms-dbmi/IRCT" target="_blank">IRCT Repo (GitHub)</a></li>
+          <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT">GitHub Repo</a></li>
+					<li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/releases">Releases</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-CL" > CL</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-API" > API</a></li>
           <li><a target="_blank" href="https://github.com/hms-dbmi/IRCT/tree/master/IRCT-EXT" > EXT</a></li>
@@ -57,36 +57,37 @@
     </div>
     <!-- END NAVIGATION -->
 
+
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
       <div class="row restDocRow" id="Introduction">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Introduction</span>
           <p class="docText">As part of the IRCT we have created a simple but powerful RESTFull API that can be used to communicate with any number of servers. Below is a list of available calls and basic information about these services. To learn more about the IRCT click <a href="/more.html">here</a> or to download our documentation <a href="/docs/IRCT_Protocol_1.1.pdf">here</a>.</p>
         </div>
       </div>
       <!-- SECURITY SECTION -->
       <div class="row restDocRow" id="Security">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Security</span>
           <p class="docText">The IRCT provides a secure way of accessing patient data across multiple resources. It does not store any passwords, and itself does not do any authentication of which resources the user has access to. By not implementing any specific authentication mechanism it avoids the need for resources to conform to the same access restrictions. It also keeps the governance for individual access to be defined by the resources themselves. It does require that all resources that have access restrictions use the same identity service provider. This identity service provider may access other identity stores. The identity service provider must support OpenID Connect and all connections should be secured using HTTPS.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-security-createState">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/securityService/createState</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/securityService/createState</span>
           <p class="docText">This call returns a randomly generated number that is used to ensure a secure connection</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-security-createKey">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/securityService/createKey</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/securityService/createKey</span>
           <p class="docText">This call creates an IRCT key for secure access outside of a browser</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-security-callback">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/securityService/callback</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/securityService/callback</span>
           <p class="docText">This is called by the open ID provider to authenticate the user</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -121,8 +122,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-security-startSession">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/securityService/startSession</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/securityService/startSession</span>
           <p class="docText">This call is used to create a secure session outside of a browser</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -145,22 +146,22 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-security-endSession">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/securityService/endSession</span>
+        <div class="col-lg-12">
+          <span class="docRowSubHeader">/rest/v1/securityService/endSession</span>
           <p class="docText">Ends a secure session</p>
         </div>
       </div>
       <!-- RESOURCE SECTION -->
       <div class="row restDocRow" id="Resource">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Resource</span>
           <p class="docText">A resource can be considered anything that provides data, or processing methods to an end user. This broad definition allows the IRCT to communicate with many different types of services. As stated before it does not require the resource to conform to any specific protocol, or ontology. This means a resource can be as simple as a file, or as complicated as an i2b2 instance. The resources can exist anywhere from being hosted on the same server, to being hosted behind a firewall in another institution.</p>
           <p class="docText">Resources define what they are, and what they can do through the IRCT. This includes information about what data types that they support as well as what actions such as queries or processes they may perform. These actions define how an end user uses the IRCT to interact with them. This allows for a single protocol and server to be used to communicate with any number of resources of any number of types. How the different actions are defined, and used are defined in their respective sections of this documentation.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-resource-resourceList">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resourceService/resources</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resourceService/resources</span>
           <p class="docText">This call is used to return a list of all available resources. The default behavior is to return all resources, but filtering can by specifying the type of resources</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -183,8 +184,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-resource-path">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resourceService/path</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resourceService/path</span>
           <p class="docText">This call is used to traverse the relationships of different entities of a resource. By default the relationship is for child. The first level is always resources: <pre>/rest/v1/resourceService/path/RESOURCE</pre>While all additional paths are specified after the resource. For example:<pre>/rest/v1/resourceService/path/RESOURCE/PROJECT/ENTITY</pre></p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -207,8 +208,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-resource-find">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resourceService/find</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resourceService/find</span>
           <p class="docText">This call is used to find paths, and entities that match a specific term, or ontology information. </p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -244,26 +245,26 @@
       </div>
       <!-- QUERY SECTION -->
       <div class="row restDocRow" id="Query">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Query</span>
           <p class="docText">As described above the IRCT is a resource driven API. For querying this means that each resource defines what components of a query that it supports and what they can do. Queries are defined inside the IRCT of containing clauses. These clauses can be of three types; Select, Where, and Join. Select clauses instruct the resource to return these data types, while Join clauses tell the resource how to join the data. Where clauses are more complicated as they tell the resource how to filter the data using different predicates. Predicates are a set of different filtering operations that can be performed by a query on a field. This may be something simple as filtering out all entries that a null value, or as complicated as returning only the genomic rarity of a SNP. Not all resources will support all three different types of clauses.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-startQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/startQuery</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/startQuery</span>
           <p class="docText">Starts a query and returns a conversation id that needs to be passed if the query is being created by adding components.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-saveQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/saveQuery</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/saveQuery</span>
           <p class="docText">Saves the query so that it can be run later. It requens a query id that can be used to retrieve the query.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-loadQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/loadQuery</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/loadQuery</span>
           <p class="docText">Loads the saved query, and returns a conversation id that can then be used to run the query.</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -286,15 +287,15 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-clause">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/clause</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/clause</span>
           <p class="docText">A post call that adds a Select, where or Join clause to a query.</p>
           <p class="docText"><b>Body</b><br/>A JSON object representing the query and returns a clause id.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-where-clause">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/clause?type=where</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/clause?type=where</span>
           <p class="docText">A call that adds a where clause to a query and returns a clause id.</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -347,8 +348,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-select-clause">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/clause?type=select</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/clause?type=select</span>
           <p class="docText">A call that adds a select clause to a query and returns a clause id. Multiple selects can be combined into one column by setting the alias to the same value.</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -389,8 +390,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-join-clause">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/clause?type=join</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/clause?type=join</span>
           <p class="docText">A call that adds a join clause to a query and returns a clause id.</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -437,8 +438,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-get-runQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/runQuery</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/runQuery</span>
           <p class="docText">Runs the query</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -461,28 +462,28 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-post-runQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/queryService/runQuery</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/queryService/runQuery</span>
           <p class="docText">A post call that runs a query based on a JSON representation passed in the body.</p>
           <p class="docText"><b>Body</b><br/>A JSON object representing the query and returns a clause id.</p>
         </div>
       </div>
       <!-- PROCESS SECTION -->
       <div class="row restDocRow" id="Process">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Process</span>
           <p class="docText">In a manner similar to query creation and execution, processes can be created to run a method on a remote resource if the resource already implements it . All processes take in a series of fields as one input, but unlike queries do not have a concept similar to clauses. Processes can be defined to take results of queries, or other processes as inputs. This allows for an entire several actions to be chained together to create a desired process.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-process-startQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/processService/startProcess</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/processService/startProcess</span>
           <p class="docText">Starts a process and returns a conversation id that needs to be passed if the process is being created by adding components.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-process-process">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/processService/process</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/processService/process</span>
           <p class="docText">A call that sets the parameters for running a process</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -523,8 +524,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-query-get-runQuery">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/processService/runProcess</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/processService/runProcess</span>
           <p class="docText">Runs the process</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -548,20 +549,20 @@
       </div>
       <!-- RESULT SECTION -->
       <div class="row restDocRow" id="Result">
-        <div class="col-xs-5 col-sm-5 docRowText">
+        <div class="col-lg-12 docRowText">
           <span class="docRowHeader">Result</span>
           <p class="docText">Since the IRCT interacts with different resources it needs to be able to securely store, and make accessible the results of its different actions (Query, Process). Results can be of several different types (TABULAR, JSON, HTML, IMAGE). Depending on the result type they can be downloaded in different formats (e.g. XML, CSV, Excel). Results are only available to the person who ran the action that created them. However future releases will allow for different results to be more easily shared with a group or be made public.</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-result-available">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resultService/available</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resultService/available</span>
           <p class="docText">Returns an array of available results</p>
         </div>
       </div>
       <div class="row restDocRow" id="rest-result-resultStatus">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resultService/resultStatus/$RESULTID</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resultService/resultStatus/$RESULTID</span>
           <p class="docText">Returns the status of the result</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -584,8 +585,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-result-availableFormats">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resultService/availableFormats/$RESULTID</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resultService/availableFormats/$RESULTID</span>
           <p class="docText">Returns an array of formats that the result can be returned in</p>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -608,8 +609,8 @@
         </div>
       </div>
       <div class="row restDocRow" id="rest-result-result">
-        <div class="col-xs-5 col-sm-5 docRowText">
-          <span class="docRowHeader">/rest/v1/resultService/result/$RESULTID/$FORMAT</span>
+        <div class="col-lg-12 docRowText">
+          <span class="docRowSubHeader">/rest/v1/resultService/result/$RESULTID/$FORMAT</span>
           <p class="docText">Returns an array of formats that the result can be returned in</p>
           <div class="table-responsive">
             <table class="table table-striped">

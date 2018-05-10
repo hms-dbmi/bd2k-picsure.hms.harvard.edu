@@ -39,9 +39,9 @@ Example Response
         "fields": [
           {
             "name": "By Encounter",
-            "path": "ENOUNTER",
+            "path": "ENCOUNTER",
             "description": "By Encounter",
-            "required": true,
+            "required": false,
             "dataTypes": [],
             "permittedValues": [
               "YES",
@@ -73,9 +73,9 @@ Example Response
           },
           {
             "name": "By Encounter",
-            "path": "ENOUNTER",
+            "path": "ENCOUNTER",
             "description": "By Encounter",
-            "required": true,
+            "required": false,
             "dataTypes": [],
             "permittedValues": [
               "YES",
@@ -156,9 +156,9 @@ Example Response
           },
           {
             "name": "By Encounter",
-            "path": "ENOUNTER",
+            "path": "ENCOUNTER",
             "description": "By Encounter",
-            "required": true,
+            "required": false,
             "dataTypes": [],
             "permittedValues": [
               "YES",
@@ -255,9 +255,9 @@ Example Response
           },
           {
             "name": "By Encounter",
-            "path": "ENOUNTER",
+            "path": "ENCOUNTER",
             "description": "By Encounter",
-            "required": true,
+            "required": false,
             "dataTypes": [],
             "permittedValues": [
               "YES",
